@@ -3,11 +3,12 @@ import LoginForm from './components/LoginForm'
 import BlogList from './components/BLogs/BlogList'
 import BlogpostForm from './components/BlogpostForm'
 import Notification from './components/Notification'
+import Togglable from './components/Togglable'
 import { login } from './services/login'
-import { getAll, create, update, setToken } from './services/blog'
+import { getAll, create, update, remove, setToken } from './services/blog'
 
 const App = () => {
-  const [blog, setBlog] = useState([])
+  const [blogs, setBlogs] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
@@ -16,8 +17,11 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
-    getAll().then(returnedBlog => setBlog(returnedBlog))
+    getAll().then(returnedBlog => setBlogs(returnedBlog))
   }, [])
+  useEffect(() => {
+    getAll().then(returnedBlog => setBlogs(returnedBlog))
+  }, [newBlog])
 
   useEffect(() => {
     const loggedUser = window.localStorage.getItem('loggedBLogUser')
@@ -55,16 +59,23 @@ const App = () => {
   }
   const handleBlogSubmit = async e => {
     e.preventDefault()
-    const returnBlog = await create(newBlog)
+    try {
+      const returnBlog = await create(newBlog)
 
-    setBlog([...blog, returnBlog])
-    setSucessMessage(
-      `A new blog ${newBlog.title} by ${newBlog.author} is created`
-    )
-    setTimeout(() => {
-      setSucessMessage(null)
-    }, 5000)
-    setNewBlog({ title: '', author: '', url: '' })
+      setBlogs([...blogs, returnBlog])
+      setSucessMessage(
+        `A new blog ${newBlog.title} by ${newBlog.author} is created`
+      )
+      setTimeout(() => {
+        setSucessMessage(null)
+      }, 5000)
+      setNewBlog({ title: '', author: '', url: '' })
+    } catch (exception) {
+      setErrorMessage('All inputs must be filled')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+    }
   }
 
   const handleUsernameChange = e => {
@@ -76,6 +87,7 @@ const App = () => {
 
   const handleLogin = async e => {
     e.preventDefault()
+
     try {
       const user = await login({ username, password })
 
@@ -98,6 +110,40 @@ const App = () => {
     window.localStorage.clear()
   }
 
+  const handleLike = async id => {
+    try {
+      const blog = blogs.find(blog => blog.id === id)
+      console.log(blog)
+      const changedBlog = { ...blog, likes: blog.likes + 1 }
+      const updatedBlog = await update(id, changedBlog)
+      console.log(updatedBlog)
+      setBlogs(blogs.map(blog => (blog.id === id ? updatedBlog : blog)))
+      //console.log(blogs)
+    } catch (exception) {
+      setErrorMessage('can not update')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+    }
+  }
+
+  const handleRemove = async id => {
+    const blog = blogs.find(blog => blog.id === id)
+    const result = window.confirm(`Remove ${blog.title}! by ${blog.author}`)
+    if (result) {
+      try {
+        await remove(id)
+
+        setBlogs(blogs.filter(blog => blog.id !== id))
+      } catch (exception) {
+        setErrorMessage('Not authorized to remove')
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
+      }
+    }
+  }
+
   return (
     <div>
       <Notification message={sucessMessage} style={sucessStyle} />
@@ -114,15 +160,22 @@ const App = () => {
         <div>
           <p>{`logged in as ${user.name}`}</p>
           <button onClick={handleLogout}>log out</button>
-          <BlogpostForm
-            onBlogSubmit={handleBlogSubmit}
-            handleChange={handleChange}
-            newBlog={newBlog}
-          />
+          <Togglable buttonLabel='Add Blog'>
+            <BlogpostForm
+              onBlogSubmit={handleBlogSubmit}
+              handleChange={handleChange}
+              newBlog={newBlog}
+            />
+          </Togglable>
         </div>
       )}
 
-      <BlogList blogs={blog} />
+      <BlogList
+        blogs={blogs}
+        handleLike={handleLike}
+        handleRemove={handleRemove}
+        user={user}
+      />
     </div>
   )
 }
