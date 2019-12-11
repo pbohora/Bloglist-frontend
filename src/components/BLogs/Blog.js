@@ -25,7 +25,7 @@ const Blog = ({ blog, handleLike, handleRemove, user }) => {
             <a href=''>{blog.url}</a>
           </div>
           <div>
-            {blog.likes} likes{' '}
+            {blog.likes} likes
             <button onClick={() => handleLike(blog.id)}>like</button>
             <div>Added by {blog.user.name} </div>
             {user !== null && user.id === blog.user.id && (
