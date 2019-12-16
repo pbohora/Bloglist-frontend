@@ -16,7 +16,7 @@ const Blog = ({ blog, handleLike, handleRemove, user }) => {
 
   return (
     <div style={blogStyle}>
-      <div onClick={handleShowDetail}>
+      <div onClick={handleShowDetail} className='header'>
         {blog.title} {blog.author}
       </div>
       {showDetail && (
