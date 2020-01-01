@@ -149,8 +149,6 @@ const App = () => {
           handleLogin={handleLogin}
           userName={userName}
           passWord={passWord}
-          userReset={userName.reset}
-          passwordReset={passWord.reset}
         />
       ) : (
         <div>
