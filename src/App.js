@@ -6,16 +6,21 @@ import Notification from './components/Notification'
 import Togglable from './components/Togglable'
 import { login } from './services/login'
 import { getAll, create, update, remove, setToken } from './services/blog'
+import { useField } from './hooks'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [newBlog, setNewBlog] = useState({ title: '', author: '', url: '' })
   const [sucessMessage, setSucessMessage] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
 
+  const userName = useField('text')
+  const passWord = useField('text')
+
+  const username = userName.value
+  const password = passWord.value
+  console.log(userName, password)
   useEffect(() => {
     getAll().then(returnedBlog => setBlogs(returnedBlog))
   }, [])
@@ -78,24 +83,15 @@ const App = () => {
     }
   }
 
-  const handleUsernameChange = e => {
-    setUsername(e.target.value)
-  }
-  const handlePasswordChange = e => {
-    setPassword(e.target.value)
-  }
-
   const handleLogin = async e => {
     e.preventDefault()
 
     try {
       const user = await login({ username, password })
-
+      console.log(user)
       window.localStorage.setItem('loggedBLogUser', JSON.stringify(user))
       setToken(user.token)
       setUser(user)
-      setUsername('')
-      setPassword('')
     } catch (exception) {
       setErrorMessage('Wrong username or password')
       setTimeout(() => {
@@ -150,11 +146,11 @@ const App = () => {
       <Notification message={errorMessage} style={errorStyle} />
       {user === null ? (
         <LoginForm
-          handleUsernameChange={handleUsernameChange}
-          handlePasswordChange={handlePasswordChange}
           handleLogin={handleLogin}
-          username={username}
-          password={password}
+          userName={userName}
+          passWord={passWord}
+          userReset={userName.reset}
+          passwordReset={passWord.reset}
         />
       ) : (
         <div>
