@@ -4,6 +4,7 @@ import BlogList from './components/BLogs/BlogList'
 import BlogpostForm from './components/BlogpostForm'
 import Notification from './components/Notification'
 import Togglable from './components/Togglable'
+import Navbar from './components/Navbar'
 import { login } from './services/login'
 import { getAll, create, update, remove, setToken } from './services/blog'
 import { useField } from './hooks'
@@ -142,6 +143,7 @@ const App = () => {
 
   return (
     <div>
+      {/*<Navbar user={user} handleLogout={handleLogout} />*/}
       <Notification message={sucessMessage} style={sucessStyle} />
       <Notification message={errorMessage} style={errorStyle} />
       {user === null ? (
