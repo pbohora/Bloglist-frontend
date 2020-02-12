@@ -15,13 +15,14 @@ const App = () => {
   const [newBlog, setNewBlog] = useState({ title: '', author: '', url: '' })
   const [sucessMessage, setSucessMessage] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
+  const [showPassword, setShowPassword] = useState(false)
 
   const userName = useField('text')
-  const passWord = useField('text')
+  const passWord = useField(showPassword ? 'text' : 'password')
 
   const username = userName.value
   const password = passWord.value
-  console.log(userName, password)
+  console.log(userName, passWord)
   useEffect(() => {
     getAll().then(returnedBlog => setBlogs(returnedBlog))
   }, [])
@@ -141,6 +142,9 @@ const App = () => {
     }
   }
 
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword)
+  }
   return (
     <div>
       {/*<Navbar user={user} handleLogout={handleLogout} />*/}
@@ -151,6 +155,8 @@ const App = () => {
           handleLogin={handleLogin}
           userName={userName}
           passWord={passWord}
+          handleClickShowPassword={handleClickShowPassword}
+          showPassword={showPassword}
         />
       ) : (
         <div>

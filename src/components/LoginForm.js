@@ -14,41 +14,38 @@ import CardContent from '@material-ui/core/CardContent'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    minWidth: 275
+    minWidth: 75,
+    padding: 60
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)'
-  },
-  title: {
-    fontSize: 14
-  },
-  pos: {
-    marginBottom: 12
-  },
+
   margin: {
-    margin: theme.spacing(2)
+    margin: theme.spacing(4)
+  },
+
+  loginButton: {
+    background: '#45d0ff',
+    color: 'white',
+    width: 120,
+    '&:hover': {
+      background: '#09aae0'
+    }
+  },
+  resetButton: {
+    marginLeft: 'auto'
   }
 }))
 
-const LoginForm = ({ handleLogin, userName, passWord }) => {
+const LoginForm = ({
+  handleLogin,
+  userName,
+  passWord,
+  handleClickShowPassword,
+  showPassword
+}) => {
   const classes = useStyles()
 
-  const [values, setValues] = React.useState({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
-    showPassword: false
-  })
-
   const handleChange = prop => event => {
-    setValues({ ...values, [prop]: event.target.value })
-  }
-
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword })
+    //setValues({ ...values, [prop]: event.target.value })
   }
 
   const handleMouseDownPassword = event => {
@@ -58,42 +55,64 @@ const LoginForm = ({ handleLogin, userName, passWord }) => {
   return (
     <>
       <Card className={classes.root}>
-        <CardContent>
-          <FormControl className={classes.margin}>
-            <Input
-              id='input-with-icon-adornment'
-              placeholder='User Name'
-              startAdornment={
-                <InputAdornment position='end'>
-                  <AccountCircle />
-                </InputAdornment>
-              }
-            />
-          </FormControl>
-          <FormControl className={classes.margin}>
-            <Input
-              id='standard-adornment-password'
-              type={values.showPassword ? 'text' : 'password'}
-              value={values.password}
-              onChange={handleChange('password')}
-              placeholder='Password'
-              endAdornment={
-                <InputAdornment position='end'>
-                  <IconButton
-                    aria-label='toggle password visibility'
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                  >
-                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
-          </FormControl>
-          <Button color='primary' type='submit'>
-            Login
-          </Button>
-        </CardContent>
+        <form onSubmit={handleLogin}>
+          <CardContent>
+            <div>
+              <FormControl fullWidth className={classes.margin}>
+                <Input
+                  id='input-with-icon-adornment'
+                  placeholder='User Name'
+                  {...userName}
+                  endAdornment={
+                    <InputAdornment position='start'>
+                      <AccountCircle />
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+            </div>
+            <div>
+              <FormControl fullWidth className={classes.margin}>
+                <Input
+                  id='standard-adornment-password'
+                  placeholder='Password'
+                  {...passWord}
+                  endAdornment={
+                    <InputAdornment position='end'>
+                      <IconButton
+                        aria-label='toggle password visibility'
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+            </div>
+          </CardContent>
+          <CardActions>
+            <Button
+              className={classes.resetButton}
+              size='large'
+              variant='contained'
+              color='secondary'
+              onClick={() => (userName.onClick(), passWord.onClick())}
+            >
+              Reset
+            </Button>
+            <Button
+              className={classes.loginButton}
+              size='large'
+              variant='contained'
+              onClick={handleLogin}
+              type='submit'
+            >
+              Login
+            </Button>
+          </CardActions>
+        </form>
       </Card>
       <form onSubmit={handleLogin}>
         <label>Username</label>
