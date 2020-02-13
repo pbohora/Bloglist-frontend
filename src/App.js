@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom'
+
 import LoginForm from './components/LoginForm'
 import BlogList from './components/BLogs/BlogList'
 import BlogpostForm from './components/BlogpostForm'
 import Notification from './components/Notification'
 import Togglable from './components/Togglable'
+import Navbar from './components/Navbar'
 import { login } from './services/login'
 import { getAll, create, update, remove, setToken } from './services/blog'
 import { useField } from './hooks'
+import Section from './components/Section/Section'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -14,13 +24,14 @@ const App = () => {
   const [newBlog, setNewBlog] = useState({ title: '', author: '', url: '' })
   const [sucessMessage, setSucessMessage] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
+  const [showPassword, setShowPassword] = useState(false)
 
   const userName = useField('text')
-  const passWord = useField('text')
+  const passWord = useField(showPassword ? 'text' : 'password')
 
   const username = userName.value
   const password = passWord.value
-  console.log(userName, password)
+  console.log(userName, passWord)
   useEffect(() => {
     getAll().then(returnedBlog => setBlogs(returnedBlog))
   }, [])
@@ -140,36 +151,63 @@ const App = () => {
     }
   }
 
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword)
+  }
   return (
     <div>
-      <Notification message={sucessMessage} style={sucessStyle} />
-      <Notification message={errorMessage} style={errorStyle} />
-      {user === null ? (
-        <LoginForm
-          handleLogin={handleLogin}
-          userName={userName}
-          passWord={passWord}
-        />
-      ) : (
-        <div>
-          <p>{`logged in as ${user.name}`}</p>
-          <button onClick={handleLogout}>log out</button>
-          <Togglable buttonLabel='Add Blog'>
-            <BlogpostForm
-              onBlogSubmit={handleBlogSubmit}
-              handleChange={handleChange}
-              newBlog={newBlog}
+      <Router>
+        {<Navbar user={user} handleLogout={handleLogout} />}
+        <Section sectionTitle='Title'>
+          <Notification message={sucessMessage} style={sucessStyle} />
+          <Notification message={errorMessage} style={errorStyle} />
+          {user === null ? (
+            <LoginForm
+              handleLogin={handleLogin}
+              userName={userName}
+              passWord={passWord}
+              handleClickShowPassword={handleClickShowPassword}
+              showPassword={showPassword}
             />
-          </Togglable>
-        </div>
-      )}
+          ) : (
+            <div>
+              <p>{`logged in as ${user.name}`}</p>
+              <button onClick={handleLogout}>log out</button>
+              <Togglable buttonLabel='Add Blog'>
+                <BlogpostForm
+                  onBlogSubmit={handleBlogSubmit}
+                  handleChange={handleChange}
+                  newBlog={newBlog}
+                />
+              </Togglable>
+            </div>
+          )}
 
-      <BlogList
-        blogs={blogs}
-        handleLike={handleLike}
-        handleRemove={handleRemove}
-        user={user}
-      />
+          <Route
+            path='/blogs'
+            render={() => (
+              <BlogList
+                blogs={blogs}
+                handleLike={handleLike}
+                handleRemove={handleRemove}
+                user={user}
+              />
+            )}
+          />
+          <Route
+            path='/login'
+            render={() => (
+              <LoginForm
+                handleLogin={handleLogin}
+                userName={userName}
+                passWord={passWord}
+                handleClickShowPassword={handleClickShowPassword}
+                showPassword={showPassword}
+              />
+            )}
+          />
+        </Section>
+      </Router>
     </div>
   )
 }
