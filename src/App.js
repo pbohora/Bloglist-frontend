@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom'
 
 import LoginForm from './components/LoginForm'
+import SignupForm from './components/SignupForm'
 import BlogList from './components/BLogs/BlogList'
 import BlogpostForm from './components/BlogpostForm'
 import Notification from './components/Notification'
@@ -198,6 +199,18 @@ const App = () => {
             path='/login'
             render={() => (
               <LoginForm
+                handleLogin={handleLogin}
+                userName={userName}
+                passWord={passWord}
+                handleClickShowPassword={handleClickShowPassword}
+                showPassword={showPassword}
+              />
+            )}
+          />
+          <Route
+            path='/signup'
+            render={() => (
+              <SignupForm
                 handleLogin={handleLogin}
                 userName={userName}
                 passWord={passWord}
