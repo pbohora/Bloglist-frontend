@@ -14,8 +14,8 @@ import CardContent from '@material-ui/core/CardContent'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    minWidth: 75,
-    padding: 60
+    padding: 60,
+    alignSelf: 'center'
   },
 
   margin: {

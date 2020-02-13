@@ -1,24 +1,24 @@
 .container {
-    padding: 80px 120px;
+    padding: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 
-    background-image: url("../../Assests/sky.jpg");
-
-    /* Full height */
+    background-image: url("../../Assests/background.jpg");
     height: 100%;
-
-    /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 
 }
 
+.child {
+    align-self: center;
+    min-width: 75%;
+}
 
 h2 {
     align-self: center;
-    color: white;
+    color: rgb(34, 33, 33);
     font-size: 32px;
 }

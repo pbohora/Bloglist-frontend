@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
-import Button from '@material-ui/core/Button'
+import { Link, Redirect, withRouter } from 'react-router-dom'
 
 const useStyles = makeStyles({
   root: {
@@ -48,17 +48,23 @@ export default function Navbar({ user, handleLogOut }) {
             Blogs
           </Typography>
           <div className={classes.title}>
-            <MenuItem className={classes.menuItem} onClick={handleClose}>
-              Home
-            </MenuItem>
+            <Link to='/'>
+              <MenuItem className={classes.menuItem} onClick={handleClose}>
+                Home
+              </MenuItem>
+            </Link>
 
-            <MenuItem className={classes.menuItem} onClick={handleClose}>
-              Blogs
-            </MenuItem>
+            <Link to='/blogs'>
+              <MenuItem className={classes.menuItem} onClick={handleClose}>
+                Blogs
+              </MenuItem>
+            </Link>
 
-            <MenuItem className={classes.menuItem} onClick={handleClose}>
-              About
-            </MenuItem>
+            <Link to='/about'>
+              <MenuItem className={classes.menuItem} onClick={handleClose}>
+                About
+              </MenuItem>
+            </Link>
           </div>
           {user ? (
             <div>
@@ -92,7 +98,18 @@ export default function Navbar({ user, handleLogOut }) {
               </Menu>
             </div>
           ) : (
-            <Button color='inherit'>Login</Button>
+            <>
+              <Link to='/login'>
+                <MenuItem className={classes.menuItem} onClick={handleClose}>
+                  Sign up
+                </MenuItem>
+              </Link>
+              <Link to='/login'>
+                <MenuItem className={classes.menuItem} onClick={handleClose}>
+                  Login
+                </MenuItem>
+              </Link>
+            </>
           )}
         </Toolbar>
       </AppBar>

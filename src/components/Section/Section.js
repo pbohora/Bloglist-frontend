@@ -6,7 +6,7 @@ const Section = ({ sectionTitle, children }) => {
     <section className={SectionStyles.container}>
       <h2>{sectionTitle}</h2>
 
-      <div>{children}</div>
+      <div className={SectionStyles.child}>{children}</div>
     </section>
   )
 }
