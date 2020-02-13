@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom'
 
 import LoginForm from './components/LoginForm'
+
 import BlogList from './components/BLogs/BlogList'
 import BlogpostForm from './components/BlogpostForm'
 import Notification from './components/Notification'
@@ -16,7 +17,9 @@ import Navbar from './components/Navbar'
 import { login } from './services/login'
 import { getAll, create, update, remove, setToken } from './services/blog'
 import { useField } from './hooks'
-import Section from './components/Section/Section'
+
+import LoginPage from './Pages/LoginPage'
+import BlogPage from './Pages/BlogsPage'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -157,56 +160,54 @@ const App = () => {
   return (
     <div>
       <Router>
-        {<Navbar user={user} handleLogout={handleLogout} />}
-        <Section sectionTitle='Title'>
-          <Notification message={sucessMessage} style={sucessStyle} />
-          <Notification message={errorMessage} style={errorStyle} />
-          {user === null ? (
-            <LoginForm
+        <Notification message={sucessMessage} style={sucessStyle} />
+        <Notification message={errorMessage} style={errorStyle} />
+        {user === null ? (
+          <LoginForm
+            handleLogin={handleLogin}
+            userName={userName}
+            passWord={passWord}
+            handleClickShowPassword={handleClickShowPassword}
+            showPassword={showPassword}
+          />
+        ) : (
+          <div>
+            <p>{`logged in as ${user.name}`}</p>
+            <button onClick={handleLogout}>log out</button>
+            <Togglable buttonLabel='Add Blog'>
+              <BlogpostForm
+                onBlogSubmit={handleBlogSubmit}
+                handleChange={handleChange}
+                newBlog={newBlog}
+              />
+            </Togglable>
+          </div>
+        )}
+
+        <Route
+          path='/blogs'
+          render={() => (
+            <BlogPage
+              blogs={blogs}
+              handleLike={handleLike}
+              handleRemove={handleRemove}
+              user={user}
+            />
+          )}
+        />
+        <Route
+          path='/login'
+          render={() => (
+            <LoginPage
+              user={user}
               handleLogin={handleLogin}
               userName={userName}
               passWord={passWord}
               handleClickShowPassword={handleClickShowPassword}
               showPassword={showPassword}
             />
-          ) : (
-            <div>
-              <p>{`logged in as ${user.name}`}</p>
-              <button onClick={handleLogout}>log out</button>
-              <Togglable buttonLabel='Add Blog'>
-                <BlogpostForm
-                  onBlogSubmit={handleBlogSubmit}
-                  handleChange={handleChange}
-                  newBlog={newBlog}
-                />
-              </Togglable>
-            </div>
           )}
-
-          <Route
-            path='/blogs'
-            render={() => (
-              <BlogList
-                blogs={blogs}
-                handleLike={handleLike}
-                handleRemove={handleRemove}
-                user={user}
-              />
-            )}
-          />
-          <Route
-            path='/login'
-            render={() => (
-              <LoginForm
-                handleLogin={handleLogin}
-                userName={userName}
-                passWord={passWord}
-                handleClickShowPassword={handleClickShowPassword}
-                showPassword={showPassword}
-              />
-            )}
-          />
-        </Section>
+        />
       </Router>
     </div>
   )

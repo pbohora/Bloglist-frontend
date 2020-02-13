@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   }
 })
 
-export default function Navbar({ user, handleLogOut }) {
+export default function Navbar({ user, handleLogout }) {
   const classes = useStyles()
   const [auth, setAuth] = useState(true)
   const [anchorEl, setAnchorEl] = useState(null)
@@ -59,7 +59,13 @@ export default function Navbar({ user, handleLogOut }) {
                 Blogs
               </MenuItem>
             </Link>
-
+            {user && (
+              <Link to='/addblog'>
+                <MenuItem className={classes.menuItem} onClick={handleClose}>
+                  Add New Blog
+                </MenuItem>
+              </Link>
+            )}
             <Link to='/about'>
               <MenuItem className={classes.menuItem} onClick={handleClose}>
                 About
@@ -94,7 +100,7 @@ export default function Navbar({ user, handleLogOut }) {
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleLogOut}>Log out</MenuItem>
+                <MenuItem onClick={handleLogout}>Log out</MenuItem>
               </Menu>
             </div>
           ) : (
