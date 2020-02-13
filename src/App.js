@@ -8,6 +8,7 @@ import Navbar from './components/Navbar'
 import { login } from './services/login'
 import { getAll, create, update, remove, setToken } from './services/blog'
 import { useField } from './hooks'
+import Section from './components/Section/Section'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -147,37 +148,32 @@ const App = () => {
   }
   return (
     <div>
-      {/*<Navbar user={user} handleLogout={handleLogout} />*/}
-      <Notification message={sucessMessage} style={sucessStyle} />
-      <Notification message={errorMessage} style={errorStyle} />
-      {user === null ? (
-        <LoginForm
-          handleLogin={handleLogin}
-          userName={userName}
-          passWord={passWord}
-          handleClickShowPassword={handleClickShowPassword}
-          showPassword={showPassword}
-        />
-      ) : (
-        <div>
-          <p>{`logged in as ${user.name}`}</p>
-          <button onClick={handleLogout}>log out</button>
-          <Togglable buttonLabel='Add Blog'>
-            <BlogpostForm
-              onBlogSubmit={handleBlogSubmit}
-              handleChange={handleChange}
-              newBlog={newBlog}
-            />
-          </Togglable>
-        </div>
-      )}
-
-      <BlogList
-        blogs={blogs}
-        handleLike={handleLike}
-        handleRemove={handleRemove}
-        user={user}
-      />
+      {<Navbar user={user} handleLogout={handleLogout} />}
+      <Section sectionTitle='Title'>
+        <Notification message={sucessMessage} style={sucessStyle} />
+        <Notification message={errorMessage} style={errorStyle} />
+        {user === null ? (
+          <LoginForm
+            handleLogin={handleLogin}
+            userName={userName}
+            passWord={passWord}
+            handleClickShowPassword={handleClickShowPassword}
+            showPassword={showPassword}
+          />
+        ) : (
+          <div>
+            <p>{`logged in as ${user.name}`}</p>
+            <button onClick={handleLogout}>log out</button>
+            <Togglable buttonLabel='Add Blog'>
+              <BlogpostForm
+                onBlogSubmit={handleBlogSubmit}
+                handleChange={handleChange}
+                newBlog={newBlog}
+              />
+            </Togglable>
+          </div>
+        )}
+      </Section>
     </div>
   )
 }

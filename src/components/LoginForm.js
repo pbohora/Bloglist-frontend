@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   margin: {
-    margin: theme.spacing(4)
+    margin: theme.spacing(4, 0)
   },
 
   loginButton: {
@@ -43,10 +43,6 @@ const LoginForm = ({
   showPassword
 }) => {
   const classes = useStyles()
-
-  const handleChange = prop => event => {
-    //setValues({ ...values, [prop]: event.target.value })
-  }
 
   const handleMouseDownPassword = event => {
     event.preventDefault()
@@ -114,17 +110,6 @@ const LoginForm = ({
           </CardActions>
         </form>
       </Card>
-      <form onSubmit={handleLogin}>
-        <label>Username</label>
-        <input {...userName} />
-        <label>Password</label>
-        <input {...passWord} />
-
-        <button type='submit'>Login</button>
-      </form>
-      <button onClick={() => (userName.onClick(), passWord.onClick())}>
-        Reset
-      </button>
     </>
   )
 }
