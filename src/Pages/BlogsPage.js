@@ -3,9 +3,9 @@ import Layout from '../components/Layout'
 import Section from '../components/Section/Section'
 import BlogList from '../components/BLogs/BlogList'
 
-const LoginPage = ({ user, blogs, handleLike, handleRemove }) => {
+const BlogPage = ({ user, blogs, handleLike, handleRemove, handleLogOut }) => {
   return (
-    <Layout user={user}>
+    <Layout user={user} handleLogOut={handleLogOut}>
       <Section sectionTitle='Blogs'>
         <BlogList
           blogs={blogs}
@@ -18,4 +18,4 @@ const LoginPage = ({ user, blogs, handleLike, handleRemove }) => {
   )
 }
 
-export default LoginPage
+export default BlogPage

@@ -2,18 +2,14 @@ import React, { useState, useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   Redirect,
   withRouter
 } from 'react-router-dom'
 
 import LoginForm from './components/LoginForm'
-
-import BlogList from './components/BLogs/BlogList'
 import BlogpostForm from './components/BlogpostForm'
 import Notification from './components/Notification'
 import Togglable from './components/Togglable'
-import Navbar from './components/Navbar'
 import { login } from './services/login'
 import { getAll, create, update, remove, setToken } from './services/blog'
 import { useField } from './hooks'
@@ -162,7 +158,7 @@ const App = () => {
       <Router>
         <Notification message={sucessMessage} style={sucessStyle} />
         <Notification message={errorMessage} style={errorStyle} />
-        {user === null ? (
+        {/* {user === null ? (
           <LoginForm
             handleLogin={handleLogin}
             userName={userName}
@@ -182,13 +178,14 @@ const App = () => {
               />
             </Togglable>
           </div>
-        )}
+        )} */}
 
         <Route
           path='/blogs'
           render={() => (
             <BlogPage
               blogs={blogs}
+              handleLogOut={handleLogout}
               handleLike={handleLike}
               handleRemove={handleRemove}
               user={user}
@@ -200,6 +197,7 @@ const App = () => {
           render={() => (
             <LoginPage
               user={user}
+              handleLogOut={handleLogout}
               handleLogin={handleLogin}
               userName={userName}
               passWord={passWord}

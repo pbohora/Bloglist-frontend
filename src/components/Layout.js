@@ -2,10 +2,10 @@ import React from 'react'
 
 import Navbar from './Navbar'
 
-const Layout = ({ user, handleLogout, children }) => {
+const Layout = ({ user, handleLogOut, children }) => {
   return (
     <>
-      <Navbar user={user} handleLogout={handleLogout} />
+      <Navbar user={user} handleLogOut={handleLogOut} />
       {children}
     </>
   )

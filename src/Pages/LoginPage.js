@@ -9,10 +9,11 @@ const LoginPage = ({
   passWord,
   handleLogin,
   handleClickShowPassword,
-  showPassword
+  showPassword,
+  handleLogOut
 }) => {
   return (
-    <Layout user={user}>
+    <Layout user={user} handleLogOut={handleLogOut}>
       <Section sectionTitle='Login Form'>
         <LoginForm
           handleLogin={handleLogin}

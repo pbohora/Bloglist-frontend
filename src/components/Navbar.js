@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   }
 })
 
-export default function Navbar({ user, handleLogout }) {
+export default function Navbar({ user, handleLogOut }) {
   const classes = useStyles()
   const [auth, setAuth] = useState(true)
   const [anchorEl, setAnchorEl] = useState(null)
@@ -100,7 +100,7 @@ export default function Navbar({ user, handleLogout }) {
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleLogout}>Log out</MenuItem>
+                <MenuItem onClick={handleLogOut}>Log out</MenuItem>
               </Menu>
             </div>
           ) : (
@@ -111,9 +111,7 @@ export default function Navbar({ user, handleLogout }) {
                 </MenuItem>
               </Link>
               <Link to='/login'>
-                <MenuItem className={classes.menuItem} onClick={handleClose}>
-                  Login
-                </MenuItem>
+                <MenuItem className={classes.menuItem}>Login</MenuItem>
               </Link>
             </>
           )}
