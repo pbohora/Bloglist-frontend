@@ -43,6 +43,7 @@ const LoginForm = ({
   passWord,
   handleClickShowPassword,
   showPassword,
+  sucessMessage,
   history
 }) => {
   const classes = useStyles()

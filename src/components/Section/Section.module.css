@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
 
-    background-image: url("../../Assests/background.jpg");
+    background-image: linear-gradient(360deg, rgba(219, 216, 228, 0.48503151260504207) 100%, rgba(208, 208, 208, 0.0844712885154062) 100%), url("../../Assests/background.jpg");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;

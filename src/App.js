@@ -8,7 +8,6 @@ import {
 
 import LoginForm from './components/LoginForm'
 import BlogpostForm from './components/BlogpostForm'
-import Notification from './components/Notification'
 import Togglable from './components/Togglable'
 import { login } from './services/login'
 import { getAll, create, update, remove, setToken } from './services/blog'
@@ -48,25 +47,25 @@ const App = () => {
     }
   }, [])
 
-  const sucessStyle = {
-    color: 'green',
-    background: 'lightgrey',
-    fontSize: '20',
-    borderStyle: 'solid',
-    borderRadius: '5',
-    padding: '10',
-    marginBottom: '10'
-  }
+  // const sucessStyle = {
+  //   color: 'green',
+  //   background: 'lightgrey',
+  //   fontSize: '20',
+  //   borderStyle: 'solid',
+  //   borderRadius: '5',
+  //   padding: '10',
+  //   marginBottom: '10'
+  // }
 
-  const errorStyle = {
-    color: 'red',
-    background: 'lightgrey',
-    fontSize: '20',
-    borderStyle: 'solid',
-    borderRadius: '5',
-    padding: '10',
-    marginBottom: '10'
-  }
+  // const errorStyle = {
+  //   color: 'red',
+  //   background: 'lightgrey',
+  //   fontSize: '20',
+  //   borderStyle: 'solid',
+  //   borderRadius: '5',
+  //   padding: '10',
+  //   marginBottom: '10'
+  // }
 
   const handleChange = e => {
     setNewBlog({ ...newBlog, [e.target.name]: e.target.value })
@@ -156,8 +155,6 @@ const App = () => {
   return (
     <div>
       <Router>
-        <Notification message={sucessMessage} style={sucessStyle} />
-        <Notification message={errorMessage} style={errorStyle} />
         {/* {user === null ? (
           <LoginForm
             handleLogin={handleLogin}
@@ -189,6 +186,8 @@ const App = () => {
               handleLike={handleLike}
               handleRemove={handleRemove}
               user={user}
+              sucessMessage={sucessMessage}
+              errorMessage={errorMessage}
             />
           )}
         />
@@ -203,6 +202,8 @@ const App = () => {
               passWord={passWord}
               handleClickShowPassword={handleClickShowPassword}
               showPassword={showPassword}
+              sucessMessage={sucessMessage}
+              errorMessage={errorMessage}
             />
           )}
         />
