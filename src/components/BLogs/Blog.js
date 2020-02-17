@@ -1,7 +1,3 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-
 // const Blog = ({ blog, handleLike, handleRemove, user }) => {
 //   const [showDetail, setShowDetail] = useState(false)
 //   const handleShowDetail = () => setShowDetail(!showDetail)
@@ -38,14 +34,9 @@ import { Link } from 'react-router-dom'
 //     </div>
 //   )
 // }
-
-// Blog.propTypes = {
-//   blog: PropTypes.objectOf(PropTypes.any).isRequired,
-//   user: PropTypes.objectOf(PropTypes.any),
-//   handleLike: PropTypes.func.isRequired,
-//   handleRemove: PropTypes.func.isRequired
-// }
-
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
@@ -60,7 +51,19 @@ const useStyles = makeStyles(theme => ({
   root: {
     minWidth: 700,
     padding: 20,
-    margin: theme.spacing(4, 0)
+    cursor: 'pointer',
+    margin: theme.spacing(4, 0),
+    '&:hover': {}
+  },
+  likeIcon: {
+    '&:hover': {
+      color: 'blue'
+    }
+  },
+  deleteIcon: {
+    '&:hover': {
+      color: 'red'
+    }
   },
   addedby: {
     marginLeft: 'auto',
@@ -91,12 +94,14 @@ const Blog = ({ blog, handleLike, handleRemove, user }) => {
             </Typography>
           </CardContent>
           <CardContent>
-            <Typography color='textSecondary' component='p'>
+            <Typography color='textSecondary'>
+              Link:
               <a href=''>{blog.url}</a>
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
             <IconButton
+              className={classes.likeIcon}
               aria-label='add to favorites'
               onClick={() => handleLike(blog.id)}
             >
@@ -104,7 +109,11 @@ const Blog = ({ blog, handleLike, handleRemove, user }) => {
             </IconButton>
             {blog.likes} Likes
             {user !== null && user.id === blog.user.id && (
-              <IconButton aria-label='delete' onClick={() => handleRemove(blog.id)}>
+              <IconButton
+                className={classes.deleteIcon}
+                aria-label='delete'
+                onClick={() => handleRemove(blog.id)}
+              >
                 <DeleteIcon />
               </IconButton>
             )}
@@ -120,6 +129,12 @@ const Blog = ({ blog, handleLike, handleRemove, user }) => {
       )}
     </Card>
   )
+}
+Blog.propTypes = {
+  blog: PropTypes.objectOf(PropTypes.any).isRequired,
+  user: PropTypes.objectOf(PropTypes.any),
+  handleLike: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired
 }
 
 export default Blog
