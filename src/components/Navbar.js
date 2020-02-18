@@ -59,7 +59,13 @@ export default function Navbar({ user, handleLogOut }) {
                 Blogs
               </MenuItem>
             </Link>
-
+            {user && (
+              <Link to='/addblog'>
+                <MenuItem className={classes.menuItem} onClick={handleClose}>
+                  Add New Blog
+                </MenuItem>
+              </Link>
+            )}
             <Link to='/about'>
               <MenuItem className={classes.menuItem} onClick={handleClose}>
                 About
@@ -105,9 +111,7 @@ export default function Navbar({ user, handleLogOut }) {
                 </MenuItem>
               </Link>
               <Link to='/login'>
-                <MenuItem className={classes.menuItem} onClick={handleClose}>
-                  Login
-                </MenuItem>
+                <MenuItem className={classes.menuItem}>Login</MenuItem>
               </Link>
             </>
           )}

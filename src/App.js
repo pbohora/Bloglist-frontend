@@ -2,21 +2,19 @@ import React, { useState, useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   Redirect,
   withRouter
 } from 'react-router-dom'
 
 import LoginForm from './components/LoginForm'
-import BlogList from './components/BLogs/BlogList'
 import BlogpostForm from './components/BlogpostForm'
-import Notification from './components/Notification'
 import Togglable from './components/Togglable'
-import Navbar from './components/Navbar'
 import { login } from './services/login'
 import { getAll, create, update, remove, setToken } from './services/blog'
 import { useField } from './hooks'
-import Section from './components/Section/Section'
+
+import LoginPage from './Pages/LoginPage'
+import BlogPage from './Pages/BlogsPage'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -25,6 +23,7 @@ const App = () => {
   const [sucessMessage, setSucessMessage] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const [showPassword, setShowPassword] = useState(false)
+  const [openDialog, setOpenDialog] = useState(false)
 
   const userName = useField('text')
   const passWord = useField(showPassword ? 'text' : 'password')
@@ -49,25 +48,25 @@ const App = () => {
     }
   }, [])
 
-  const sucessStyle = {
-    color: 'green',
-    background: 'lightgrey',
-    fontSize: '20',
-    borderStyle: 'solid',
-    borderRadius: '5',
-    padding: '10',
-    marginBottom: '10'
-  }
+  // const sucessStyle = {
+  //   color: 'green',
+  //   background: 'lightgrey',
+  //   fontSize: '20',
+  //   borderStyle: 'solid',
+  //   borderRadius: '5',
+  //   padding: '10',
+  //   marginBottom: '10'
+  // }
 
-  const errorStyle = {
-    color: 'red',
-    background: 'lightgrey',
-    fontSize: '20',
-    borderStyle: 'solid',
-    borderRadius: '5',
-    padding: '10',
-    marginBottom: '10'
-  }
+  // const errorStyle = {
+  //   color: 'red',
+  //   background: 'lightgrey',
+  //   fontSize: '20',
+  //   borderStyle: 'solid',
+  //   borderRadius: '5',
+  //   padding: '10',
+  //   marginBottom: '10'
+  // }
 
   const handleChange = e => {
     setNewBlog({ ...newBlog, [e.target.name]: e.target.value })
@@ -134,9 +133,10 @@ const App = () => {
     }
   }
 
-  const handleRemove = async id => {
+  const handleRemove = async (id, result) => {
     const blog = blogs.find(blog => blog.id === id)
-    const result = window.confirm(`Remove ${blog.title}! by ${blog.author}`)
+    setOpenDialog(true)
+    //const result = window.confirm(`Remove ${blog.title}! by ${blog.author}`)
     if (result) {
       try {
         await remove(id)
@@ -154,59 +154,68 @@ const App = () => {
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword)
   }
+
+  const handleCancelDialog = () => {
+    setOpenDialog(false)
+  }
+
   return (
     <div>
       <Router>
-        {<Navbar user={user} handleLogout={handleLogout} />}
-        <Section sectionTitle='Title'>
-          <Notification message={sucessMessage} style={sucessStyle} />
-          <Notification message={errorMessage} style={errorStyle} />
-          {user === null ? (
-            <LoginForm
+        {/* {user === null ? (
+          <LoginForm
+            handleLogin={handleLogin}
+            userName={userName}
+            passWord={passWord}
+            handleClickShowPassword={handleClickShowPassword}
+            showPassword={showPassword}
+          />
+        ) : (
+          <div>
+            <p>{`logged in as ${user.name}`}</p>
+            <button onClick={handleLogout}>log out</button>
+            <Togglable buttonLabel='Add Blog'>
+              <BlogpostForm
+                onBlogSubmit={handleBlogSubmit}
+                handleChange={handleChange}
+                newBlog={newBlog}
+              />
+            </Togglable>
+          </div>
+        )} */}
+
+        <Route
+          path='/blogs'
+          render={() => (
+            <BlogPage
+              blogs={blogs}
+              handleLogOut={handleLogout}
+              handleLike={handleLike}
+              handleRemove={handleRemove}
+              user={user}
+              sucessMessage={sucessMessage}
+              errorMessage={errorMessage}
+              openDialog={openDialog}
+              handleClose={handleCancelDialog}
+            />
+          )}
+        />
+        <Route
+          path='/login'
+          render={() => (
+            <LoginPage
+              user={user}
+              handleLogOut={handleLogout}
               handleLogin={handleLogin}
               userName={userName}
               passWord={passWord}
               handleClickShowPassword={handleClickShowPassword}
               showPassword={showPassword}
+              sucessMessage={sucessMessage}
+              errorMessage={errorMessage}
             />
-          ) : (
-            <div>
-              <p>{`logged in as ${user.name}`}</p>
-              <button onClick={handleLogout}>log out</button>
-              <Togglable buttonLabel='Add Blog'>
-                <BlogpostForm
-                  onBlogSubmit={handleBlogSubmit}
-                  handleChange={handleChange}
-                  newBlog={newBlog}
-                />
-              </Togglable>
-            </div>
           )}
-
-          <Route
-            path='/blogs'
-            render={() => (
-              <BlogList
-                blogs={blogs}
-                handleLike={handleLike}
-                handleRemove={handleRemove}
-                user={user}
-              />
-            )}
-          />
-          <Route
-            path='/login'
-            render={() => (
-              <LoginForm
-                handleLogin={handleLogin}
-                userName={userName}
-                passWord={passWord}
-                handleClickShowPassword={handleClickShowPassword}
-                showPassword={showPassword}
-              />
-            )}
-          />
-        </Section>
+        />
       </Router>
     </div>
   )

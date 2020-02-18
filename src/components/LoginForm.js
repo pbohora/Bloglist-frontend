@@ -1,4 +1,6 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
+
 import { makeStyles } from '@material-ui/core/styles'
 import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
@@ -40,10 +42,19 @@ const LoginForm = ({
   userName,
   passWord,
   handleClickShowPassword,
-  showPassword
+  showPassword,
+  sucessMessage,
+  history
 }) => {
   const classes = useStyles()
-
+  console.log('history', history)
+  const onSubmit = event => {
+    console.log(event)
+    event.preventDefault()
+    handleLogin(event)
+    history.push('/blogs')
+  }
+  console.log('history2', history)
   const handleMouseDownPassword = event => {
     event.preventDefault()
   }
@@ -51,7 +62,7 @@ const LoginForm = ({
   return (
     <>
       <Card className={classes.root}>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={onSubmit}>
           <CardContent>
             <div>
               <FormControl fullWidth className={classes.margin}>
@@ -102,7 +113,6 @@ const LoginForm = ({
               className={classes.loginButton}
               size='large'
               variant='contained'
-              onClick={handleLogin}
               type='submit'
             >
               Login
@@ -114,4 +124,4 @@ const LoginForm = ({
   )
 }
 
-export default LoginForm
+export default withRouter(LoginForm)
