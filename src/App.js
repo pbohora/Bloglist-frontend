@@ -23,6 +23,7 @@ const App = () => {
   const [sucessMessage, setSucessMessage] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const [showPassword, setShowPassword] = useState(false)
+  const [openDialog, setOpenDialog] = useState(false)
 
   const userName = useField('text')
   const passWord = useField(showPassword ? 'text' : 'password')
@@ -132,9 +133,10 @@ const App = () => {
     }
   }
 
-  const handleRemove = async id => {
+  const handleRemove = async (id, result) => {
     const blog = blogs.find(blog => blog.id === id)
-    const result = window.confirm(`Remove ${blog.title}! by ${blog.author}`)
+    setOpenDialog(true)
+    //const result = window.confirm(`Remove ${blog.title}! by ${blog.author}`)
     if (result) {
       try {
         await remove(id)
@@ -152,6 +154,11 @@ const App = () => {
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword)
   }
+
+  const handleCancelDialog = () => {
+    setOpenDialog(false)
+  }
+
   return (
     <div>
       <Router>
@@ -188,6 +195,8 @@ const App = () => {
               user={user}
               sucessMessage={sucessMessage}
               errorMessage={errorMessage}
+              openDialog={openDialog}
+              handleClose={handleCancelDialog}
             />
           )}
         />

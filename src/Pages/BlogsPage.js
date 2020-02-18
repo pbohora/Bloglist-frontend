@@ -10,7 +10,9 @@ const BlogPage = ({
   handleRemove,
   sucessMessage,
   errorMessage,
-  handleLogOut
+  handleLogOut,
+  openDialog,
+  handleClose
 }) => {
   return (
     <Layout
@@ -25,6 +27,8 @@ const BlogPage = ({
           handleLike={handleLike}
           handleRemove={handleRemove}
           user={user}
+          openDialog={openDialog}
+          handleClose={handleClose}
         />
       </Section>
     </Layout>

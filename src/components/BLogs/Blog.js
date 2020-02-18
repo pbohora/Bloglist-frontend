@@ -47,9 +47,11 @@ import Typography from '@material-ui/core/Typography'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import DeleteIcon from '@material-ui/icons/Delete'
 
+import DialogBox from '../DialogBox'
+
 const useStyles = makeStyles(theme => ({
   root: {
-    minWidth: 700,
+    minWidth: 340,
     padding: 20,
     cursor: 'pointer',
     margin: theme.spacing(4, 0),
@@ -70,64 +72,81 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0, 4)
   }
 }))
-const Blog = ({ blog, handleLike, handleRemove, user }) => {
+const Blog = ({
+  blog,
+  handleLike,
+  handleRemove,
+  user,
+  openDialog,
+  handleClose
+}) => {
   const [showDetail, setShowDetail] = useState(false)
+  const [result, setResult] = useState(false)
   const handleShowDetail = () => setShowDetail(!showDetail)
+  const handleClick = () => setResult(true)
+
   const classes = useStyles()
 
   return (
-    <Card className={classes.root}>
-      <CardHeader
-        onClick={handleShowDetail}
-        className='header'
-        title={blog.title}
-        subheader={blog.author}
-        //subheader='September 14, 2016'
-      />
-      {showDetail && (
-        <>
-          <CardContent>
-            <Typography variant='body2' component='p'>
-              This impressive paella is a perfect party dish and a fun meal to
-              cook together with your guests. Add 1 cup of frozen peas along
-              with the mussels, if you like.
-            </Typography>
-          </CardContent>
-          <CardContent>
-            <Typography color='textSecondary'>
-              Link:
-              <a href=''>{blog.url}</a>
-            </Typography>
-          </CardContent>
-          <CardActions disableSpacing>
-            <IconButton
-              className={classes.likeIcon}
-              aria-label='add to favorites'
-              onClick={() => handleLike(blog.id)}
-            >
-              <FavoriteIcon />
-            </IconButton>
-            {blog.likes} Likes
-            {user !== null && user.id === blog.user.id && (
+    <>
+      <Card className={classes.root}>
+        <CardHeader
+          onClick={handleShowDetail}
+          className='header'
+          title={blog.title}
+          subheader={blog.author}
+          //subheader='September 14, 2016'
+        />
+        {showDetail && (
+          <>
+            <CardContent>
+              <Typography variant='body2' component='p'>
+                This impressive paella is a perfect party dish and a fun meal to
+                cook together with your guests. Add 1 cup of frozen peas along
+                with the mussels, if you like.
+              </Typography>
+            </CardContent>
+            <CardContent>
+              <Typography color='textSecondary'>
+                Link:
+                <a href=''>{blog.url}</a>
+              </Typography>
+            </CardContent>
+            <CardActions disableSpacing>
               <IconButton
-                className={classes.deleteIcon}
-                aria-label='delete'
-                onClick={() => handleRemove(blog.id)}
+                className={classes.likeIcon}
+                aria-label='add to favorites'
+                onClick={() => handleLike(blog.id)}
               >
-                <DeleteIcon />
+                <FavoriteIcon />
               </IconButton>
-            )}
-            <Typography
-              className={classes.addedby}
-              color='textSecondary'
-              component='p'
-            >
-              Added by {blog.user.name}
-            </Typography>
-          </CardActions>
-        </>
-      )}
-    </Card>
+              {blog.likes} Likes
+              {user !== null && user.id === blog.user.id && (
+                <IconButton
+                  className={classes.deleteIcon}
+                  aria-label='delete'
+                  onClick={() => handleRemove(blog.id, result)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              )}
+              <Typography
+                className={classes.addedby}
+                color='textSecondary'
+                component='p'
+              >
+                Added by {blog.user.name}
+              </Typography>
+            </CardActions>
+          </>
+        )}
+      </Card>
+      <DialogBox
+        openDialog={openDialog}
+        handleClose={handleClose}
+        handleClick={handleClick}
+      />
+    </>
   )
 }
 Blog.propTypes = {

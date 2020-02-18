@@ -1,7 +1,14 @@
 import React from 'react'
 import Blog from './Blog'
 
-const BlogList = ({ blogs, handleLike, handleRemove, user }) => {
+const BlogList = ({
+  blogs,
+  handleLike,
+  handleRemove,
+  user,
+  openDialog,
+  handleClose
+}) => {
   blogs.sort((a, b) => b.likes - a.likes)
   return blogs.map(blog => (
     <Blog
@@ -10,6 +17,8 @@ const BlogList = ({ blogs, handleLike, handleRemove, user }) => {
       handleLike={handleLike}
       handleRemove={handleRemove}
       user={user}
+      openDialog={openDialog}
+      handleClose={handleClose}
     />
   ))
 }
