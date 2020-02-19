@@ -12,6 +12,9 @@ const useStyles = makeStyles(theme => ({
     padding: 60,
     alignSelf: 'center'
   },
+  createButton: {
+    marginLeft: 'auto'
+  },
 
   margin: {
     margin: theme.spacing(4, 0)
@@ -79,7 +82,7 @@ const BlogpostForm = ({ onBlogSubmit, handleChange, newBlog }) => {
       </CardContent>
       <CardActions>
         <Button
-          className={classes.resetButton}
+          className={classes.createButton}
           size='large'
           variant='contained'
           color='primary'
