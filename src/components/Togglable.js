@@ -10,12 +10,15 @@ import CreateIcon from '@material-ui/icons/Create'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: 60,
-    alignSelf: 'center'
+    display: 'flex',
+    justifyContent: 'center'
   },
 
   cancelButton: {
     marginLeft: 'auto'
+  },
+  addButton: {
+    alignSelf: 'center'
   }
 }))
 
@@ -32,20 +35,22 @@ const Togglable = ({ children, buttonLabel }) => {
   }
 
   return (
-    <Card className={classes.root}>
-      <CardActions style={hideWhenVisible}>
+    <>
+      <div className={classes.root}>
         <Button
           onClick={toggleVisibility}
+          style={hideWhenVisible}
           size='large'
           variant='contained'
           color='primary'
           type='submit'
+          className={classes.addButton}
         >
           {buttonLabel}
           <CreateIcon />
         </Button>
-      </CardActions>
-      <CardContent style={showWhenVisible}>
+      </div>
+      <div style={showWhenVisible}>
         <CardActions>
           <IconButton
             className={classes.cancelButton}
@@ -58,8 +63,8 @@ const Togglable = ({ children, buttonLabel }) => {
           </IconButton>
         </CardActions>
         {children}
-      </CardContent>
-    </Card>
+      </div>
+    </>
   )
 }
 

@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button'
 const useStyles = makeStyles(theme => ({
   root: {
     padding: 60,
-    alignSelf: 'center'
+    background: 'white'
   },
   createButton: {
     marginLeft: 'auto'
@@ -23,63 +23,47 @@ const useStyles = makeStyles(theme => ({
 const BlogpostForm = ({ onBlogSubmit, handleChange, newBlog }) => {
   const classes = useStyles()
   return (
-    <form onSubmit={onBlogSubmit}>
-      <CardContent>
-        <label>Title</label>
-        {/* <input
-        type='text'
-        value={newBlog.title}
-        name='title'
-        onChange={handleChange}
-      /> */}
-        <FormControl fullWidth className={classes.margin}>
-          <TextField
-            type='text'
-            value={newBlog.title}
-            name='title'
-            onChange={handleChange}
-            id='outlined-basic'
-            label='Blog Title'
-            variant='outlined'
-          />
-        </FormControl>
-        <label>Author</label>
-        {/* <input
-        type='text'
-        value={newBlog.author}
-        name='author'
-        onChange={handleChange}
-      /> */}
-        <FormControl fullWidth className={classes.margin}>
-          <TextField
-            type='text'
-            value={newBlog.author}
-            name='author'
-            onChange={handleChange}
-            id='outlined-basic'
-            label='Author'
-            variant='outlined'
-          />
-        </FormControl>
-        <label>Url</label>
-        {/* <input
-        type='text'
-        value={newBlog.url}
-        name='url'
-        onChange={handleChange}
-      /> */}
-        <FormControl fullWidth className={classes.margin}>
-          <TextField
-            type='text'
-            value={newBlog.url}
-            name='url'
-            onChange={handleChange}
-            id='outlined-basic'
-            label='Blog URL'
-            variant='outlined'
-          />
-        </FormControl>
-      </CardContent>
+    <form className={classes.root} onSubmit={onBlogSubmit}>
+      <label>TITLE</label>
+
+      <FormControl fullWidth className={classes.margin}>
+        <TextField
+          type='text'
+          value={newBlog.title}
+          name='title'
+          onChange={handleChange}
+          id='outlined-basic'
+          label='Blog Title'
+          variant='outlined'
+        />
+      </FormControl>
+      <label>AUTHOR</label>
+
+      <FormControl fullWidth className={classes.margin}>
+        <TextField
+          type='text'
+          value={newBlog.author}
+          name='author'
+          onChange={handleChange}
+          id='outlined-basic'
+          label='Author'
+          variant='outlined'
+        />
+      </FormControl>
+      <label>URL</label>
+
+      <FormControl fullWidth className={classes.margin}>
+        <TextField
+          type='text'
+          value={newBlog.url}
+          name='url'
+          onChange={handleChange}
+          id='outlined-basic'
+          label='Blog URL'
+          variant='outlined'
+        />
+      </FormControl>
+
       <CardActions>
         <Button
           className={classes.createButton}

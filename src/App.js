@@ -15,6 +15,7 @@ import { useField } from './hooks'
 
 import LoginPage from './Pages/LoginPage'
 import BlogPage from './Pages/BlogsPage'
+import CreateBlogPage from './Pages/CreateBlogPage'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -162,7 +163,7 @@ const App = () => {
   return (
     <div>
       <Router>
-        {user === null ? (
+        {/* {user === null ? (
           <LoginForm
             handleLogin={handleLogin}
             userName={userName}
@@ -182,7 +183,7 @@ const App = () => {
               />
             </Togglable>
           </div>
-        )}
+        )} */}
 
         <Route
           path='/blogs'
@@ -213,6 +214,20 @@ const App = () => {
               showPassword={showPassword}
               sucessMessage={sucessMessage}
               errorMessage={errorMessage}
+            />
+          )}
+        />
+        <Route
+          path='/addblog'
+          render={() => (
+            <CreateBlogPage
+              user={user}
+              handleLogOut={handleLogout}
+              sucessMessage={sucessMessage}
+              errorMessage={errorMessage}
+              handleBlogSubmit={handleBlogSubmit}
+              handleChange={handleChange}
+              newBlog
             />
           )}
         />
