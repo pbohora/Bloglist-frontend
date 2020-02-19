@@ -162,7 +162,7 @@ const App = () => {
   return (
     <div>
       <Router>
-        {/* {user === null ? (
+        {user === null ? (
           <LoginForm
             handleLogin={handleLogin}
             userName={userName}
@@ -182,7 +182,7 @@ const App = () => {
               />
             </Togglable>
           </div>
-        )} */}
+        )}
 
         <Route
           path='/blogs'

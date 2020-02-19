@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
 
 const Togglable = ({ children, buttonLabel }) => {
   const [visible, setVisible] = useState(false)
@@ -11,15 +14,15 @@ const Togglable = ({ children, buttonLabel }) => {
   }
 
   return (
-    <div>
-      <div style={hideWhenVisible}>
+    <Card>
+      <CardContent style={hideWhenVisible}>
         <button onClick={toggleVisibility}>{buttonLabel}</button>
-      </div>
+      </CardContent>
       <div style={showWhenVisible}>
         {children}
         <button onClick={toggleVisibility}>cancel</button>
       </div>
-    </div>
+    </Card>
   )
 }
 
