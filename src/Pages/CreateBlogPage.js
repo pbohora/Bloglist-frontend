@@ -6,13 +6,9 @@ import BlogpostForm from '../components/BlogpostForm'
 import Togglable from '../components/Togglable'
 import blogImage from '../Assests/addblog.png'
 
-import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 
-const useStyles = makeStyles(theme => ({}))
-
-const CreateBlogForm = ({
+const CreateBlogPage = ({
   user,
   handleLogOut,
   sucessMessage,
@@ -21,8 +17,6 @@ const CreateBlogForm = ({
   handleChange,
   newBlog
 }) => {
-  const classes = useStyles()
-
   return (
     <Layout
       user={user}
@@ -63,4 +57,4 @@ const CreateBlogForm = ({
   )
 }
 
-export default CreateBlogForm
+export default CreateBlogPage

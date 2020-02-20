@@ -13,6 +13,7 @@ import { login } from './services/login'
 import { getAll, create, update, remove, setToken } from './services/blog'
 import { useField } from './hooks'
 
+import HomePage from './Pages/HomePage'
 import LoginPage from './Pages/LoginPage'
 import BlogPage from './Pages/BlogsPage'
 import CreateBlogPage from './Pages/CreateBlogPage'
@@ -184,7 +185,23 @@ const App = () => {
             </Togglable>
           </div>
         )} */}
-
+        <Route
+          exact
+          path='/'
+          render={() => (
+            <HomePage
+              blogs={blogs}
+              handleLogOut={handleLogout}
+              handleLike={handleLike}
+              handleRemove={handleRemove}
+              user={user}
+              sucessMessage={sucessMessage}
+              errorMessage={errorMessage}
+              openDialog={openDialog}
+              handleClose={handleCancelDialog}
+            />
+          )}
+        />
         <Route
           path='/blogs'
           render={() => (
