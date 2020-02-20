@@ -1,11 +1,9 @@
 .container {
-    padding: 80px;
+    padding: 120px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-
-    background-image: linear-gradient(360deg, rgba(219, 216, 228, 0.48503151260504207) 100%, rgba(208, 208, 208, 0.0844712885154062) 100%), url("../../Assests/background.jpg");
-    height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -13,12 +11,27 @@
 }
 
 .child {
-    align-self: center;
     min-width: 75%;
 }
 
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 42px 0;
+}
+
 h2 {
-    align-self: center;
-    color: rgb(34, 33, 33);
-    font-size: 32px;
+    font-size: 48px;
+    font-weight: normal;
+    line-height: 0;
+}
+
+p {
+    font-size: 24px;
+}
+
+.background {
+    color: rgb(20, 20, 51);
+    background-color: rgb(238, 161, 110);
 }

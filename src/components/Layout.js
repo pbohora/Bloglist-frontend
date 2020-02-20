@@ -13,7 +13,7 @@ const Layout = ({
   return (
     <>
       <Navbar user={user} handleLogOut={handleLogOut} />
-      <Notification message={sucessMessage} severity='sucess' />
+      <Notification message={sucessMessage} severity='success' />
       <Notification message={errorMessage} severity='error' />
       {children}
     </>

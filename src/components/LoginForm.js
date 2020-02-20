@@ -47,14 +47,14 @@ const LoginForm = ({
   history
 }) => {
   const classes = useStyles()
-  console.log('history', history)
+  // console.log('history', history)
   const onSubmit = event => {
-    console.log(event)
+    // console.log(event)
     event.preventDefault()
     handleLogin(event)
     history.push('/blogs')
   }
-  console.log('history2', history)
+  // console.log('history2', history)
   const handleMouseDownPassword = event => {
     event.preventDefault()
   }

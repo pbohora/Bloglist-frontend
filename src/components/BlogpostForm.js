@@ -1,9 +1,9 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
+
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
-import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
-import CardContent from '@material-ui/core/CardContent'
 import FormControl from '@material-ui/core/FormControl'
 import Button from '@material-ui/core/Button'
 
@@ -13,17 +13,30 @@ const useStyles = makeStyles(theme => ({
     background: 'white'
   },
   createButton: {
-    marginLeft: 'auto'
+    marginLeft: 'auto',
+    background: 'rgb(243, 116, 31)',
+    '&:hover': {
+      background: 'rgb(243, 116, 31)'
+    }
   },
 
   margin: {
     margin: theme.spacing(4, 0)
   }
 }))
-const BlogpostForm = ({ onBlogSubmit, handleChange, newBlog }) => {
+const BlogpostForm = ({ onBlogSubmit, handleChange, newBlog, history }) => {
   const classes = useStyles()
+
+  const onSubmit = event => {
+    console.log('history', history)
+    event.preventDefault()
+    onBlogSubmit(event)
+    history.push('/blogs')
+  }
+  console.log('history22', history)
+
   return (
-    <form className={classes.root} onSubmit={onBlogSubmit}>
+    <form className={classes.root} onSubmit={onSubmit}>
       <label>TITLE</label>
 
       <FormControl fullWidth className={classes.margin}>
@@ -79,4 +92,4 @@ const BlogpostForm = ({ onBlogSubmit, handleChange, newBlog }) => {
   )
 }
 
-export default BlogpostForm
+export default withRouter(BlogpostForm)

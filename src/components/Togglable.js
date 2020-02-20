@@ -15,10 +15,19 @@ const useStyles = makeStyles(theme => ({
   },
 
   cancelButton: {
-    marginLeft: 'auto'
+    marginLeft: 'auto',
+
+    color: 'red'
   },
   addButton: {
-    alignSelf: 'center'
+    alignSelf: 'center',
+    background: 'rgb(243, 116, 31)',
+    '&:hover': {
+      background: 'rgb(243, 116, 31)'
+    }
+  },
+  createbutton: {
+    paddingLeft: '16px'
   }
 }))
 
@@ -47,7 +56,7 @@ const Togglable = ({ children, buttonLabel }) => {
           className={classes.addButton}
         >
           {buttonLabel}
-          <CreateIcon />
+          <CreateIcon className={classes.createbutton} />
         </Button>
       </div>
       <div style={showWhenVisible}>
@@ -59,7 +68,7 @@ const Togglable = ({ children, buttonLabel }) => {
             aria-label='add an alarm'
             variant='contained'
           >
-            <ClearIcon />
+            <ClearIcon style={{ fontSize: 40 }} />
           </IconButton>
         </CardActions>
         {children}

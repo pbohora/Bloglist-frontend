@@ -20,7 +20,23 @@ const CreateBlogForm = ({
       sucessMessage={sucessMessage}
       errorMessage={errorMessage}
     >
-      <Section sectionTitle='Blogs'>
+      <Section
+        subTitle={'Create your passion, your way.'}
+        description={'Create a unique and beautiful blog. It’s easy and free.'}
+        background={true}
+      >
+        <Togglable buttonLabel='Add Blog'>
+          <BlogpostForm
+            onBlogSubmit={handleBlogSubmit}
+            handleChange={handleChange}
+            newBlog={newBlog}
+          />
+        </Togglable>
+      </Section>
+      <Section
+        subTitle={'Create your passion, your way.'}
+        description={'Create a unique and beautiful blog. It’s easy and free.'}
+      >
         <Togglable buttonLabel='Add Blog'>
           <BlogpostForm
             onBlogSubmit={handleBlogSubmit}

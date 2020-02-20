@@ -82,10 +82,10 @@ const App = () => {
       setSucessMessage(
         `A new blog ${newBlog.title} by ${newBlog.author} is created`
       )
+      setNewBlog({ title: '', author: '', url: '' })
       setTimeout(() => {
         setSucessMessage(null)
       }, 5000)
-      setNewBlog({ title: '', author: '', url: '' })
     } catch (exception) {
       setErrorMessage('All inputs must be filled')
       setTimeout(() => {
