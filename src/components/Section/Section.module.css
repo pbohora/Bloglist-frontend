@@ -1,13 +1,10 @@
 .container {
-    padding: 120px;
+    padding: 80px 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
+    background-color: rgb(245, 223, 208);
 }
 
 .child {
