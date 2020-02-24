@@ -21,7 +21,7 @@ const BlogPage = ({
       sucessMessage={sucessMessage}
       errorMessage={errorMessage}
     >
-      <Section sectionTitle='Blogs'>
+      <Section sectionTitle='Blogs' background={true}>
         <BlogList
           blogs={blogs}
           handleLike={handleLike}
