@@ -9,7 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import MenuIcon from '@material-ui/icons/Menu'
 import Menu from '@material-ui/core/Menu'
 import ClearIcon from '@material-ui/icons/Clear'
-import { Link, Redirect, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,7 +21,8 @@ const useStyles = makeStyles(theme => ({
     display: 'flex'
   },
   menuItem: {
-    margin: '0 32px'
+    margin: '0 32px',
+    color: 'black'
   },
   logo: {
     flexGrow: 1
@@ -31,6 +32,11 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       display: 'flex'
     }
+  },
+  mobileMenuItem: {
+    fontSize: '40px',
+    padding: '24px 0',
+    color: 'black'
   },
   sectionMobile: {
     display: 'flex',
@@ -55,7 +61,6 @@ const useStyles = makeStyles(theme => ({
 export default function Navbar({ user, handleLogOut }) {
   const classes = useStyles()
 
-  const [auth, setAuth] = useState(true)
   const [anchorEl, setAnchorEl] = useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
@@ -116,48 +121,53 @@ export default function Navbar({ user, handleLogOut }) {
           <ClearIcon style={{ fontSize: 40 }} />
         </IconButton>
         <Link to='/'>
-          <MenuItem className={classes.menuItem} onClick={handleClose}>
+          <MenuItem className={classes.mobileMenuItem} onClick={handleClose}>
             Home
           </MenuItem>
         </Link>
         <Link to='/blogs'>
-          <MenuItem className={classes.menuItem} onClick={handleClose}>
+          <MenuItem className={classes.mobileMenuItem} onClick={handleClose}>
             Blogs
           </MenuItem>
         </Link>
         {user && (
           <Link to='/addblog'>
-            <MenuItem className={classes.menuItem} onClick={handleClose}>
+            <MenuItem className={classes.mobileMenuItem} onClick={handleClose}>
               Add New Blog
             </MenuItem>
           </Link>
         )}
         <Link to='/about'>
-          <MenuItem className={classes.menuItem} onClick={handleClose}>
+          <MenuItem className={classes.mobileMenuItem} onClick={handleClose}>
             About
           </MenuItem>
         </Link>
         {user ? (
-          <div>
+          <MenuItem>
             <IconButton
               aria-label='account of current user'
               aria-controls='menu-appbar'
               aria-haspopup='true'
               onClick={handleMenu}
               color='inherit'
+              className={classes.mobileMenuItem}
             >
-              <AccountCircle />
+              <AccountCircle className={classes.mobileMenuItem} />
+              {user.name}
             </IconButton>
-          </div>
+          </MenuItem>
         ) : (
           <div>
             <Link to='/login'>
-              <MenuItem className={classes.menuItem} onClick={handleClose}>
+              <MenuItem
+                className={classes.mobileMenuItem}
+                onClick={handleClose}
+              >
                 Sign up
               </MenuItem>
             </Link>
             <Link to='/login'>
-              <MenuItem className={classes.menuItem}>Login</MenuItem>
+              <MenuItem className={classes.mobileMenuItem}>Login</MenuItem>
             </Link>
           </div>
         )}
@@ -209,25 +219,6 @@ export default function Navbar({ user, handleLogOut }) {
                 >
                   <AccountCircle />
                 </IconButton>
-                {/* <Menu
-                id='menu-appbar'
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right'
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right'
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleLogOut}>Log out</MenuItem>
-              </Menu> */}
               </div>
             ) : (
               <>
