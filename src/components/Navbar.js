@@ -11,6 +11,8 @@ import Menu from '@material-ui/core/Menu'
 import ClearIcon from '@material-ui/icons/Clear'
 import { Link } from 'react-router-dom'
 
+import Logo from '../Assests/logo.png'
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -26,6 +28,10 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     flexGrow: 1
+  },
+  logoImg: {
+    height: 70,
+    width: 85
   },
   sectionDesktop: {
     display: 'none',
@@ -179,9 +185,9 @@ export default function Navbar({ user, handleLogOut }) {
     <div className={classes.root}>
       <AppBar position='fixed' color='inherit'>
         <Toolbar>
-          <Typography variant='h4' className={classes.logo}>
-            Blogs
-          </Typography>
+          <div className={classes.logo}>
+            <img src={Logo} alt='logo' className={classes.logoImg} />
+          </div>
           <div className={classes.sectionDesktop}>
             <div className={classes.title}>
               <Link to='/'>
