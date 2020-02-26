@@ -1,0 +1,12 @@
+.root {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.item {
+    max-width: 45%;
+    padding: 0 45px;
+
+}

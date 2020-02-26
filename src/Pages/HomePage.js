@@ -3,11 +3,10 @@ import { withRouter } from 'react-router-dom'
 
 import Layout from '../components/Layout'
 import Section from '../components/Section/Section'
-import blogImage from '../Assests/addblog.png'
+import Subsection from '../components/Subsection/Subsection'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
-import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles(theme => ({
   signin: {
@@ -62,20 +61,7 @@ const HomePage = ({
         )}
       </Section>
       <Section>
-        <Grid container spacing={8}>
-          <Grid item xs={6}>
-            <h1>Know your audience</h1>
-            <p>
-              Find out which posts are a hit with Blogger’s built-in analytics.
-              You’ll see where your audience is coming from and what they’re
-              interested in. You can even connect your blog directly to Google
-              Analytics for a more detailed look.
-            </p>
-          </Grid>
-          <Grid item xs={6}>
-            <img src={blogImage} alt='Smiley face' height='350' width='500' />
-          </Grid>
-        </Grid>
+        <Subsection />
       </Section>
     </Layout>
   )
