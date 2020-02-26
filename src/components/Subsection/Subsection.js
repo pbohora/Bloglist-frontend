@@ -16,9 +16,8 @@ const SubSection = () => {
           Analytics for a more detailed look.
         </p>
       </div>
-      <div className={SubSectionStyles.item}>
-        <img src={blogImage} alt='img' height='250' width='300' />
-      </div>
+
+      <img src={blogImage} alt='img' height='250' width='300' />
     </div>
   )
 }
