@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  withRouter
-} from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import LoginForm from './components/LoginForm'
-import BlogpostForm from './components/BlogpostForm'
-import Togglable from './components/Togglable'
 import { login } from './services/login'
 import { getAll, create, update, remove, setToken } from './services/blog'
 import { useField } from './hooks'

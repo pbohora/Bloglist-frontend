@@ -52,7 +52,10 @@ const LoginForm = ({
     // console.log(event)
     event.preventDefault()
     handleLogin(event)
-    history.push('/blogs')
+    console.log('sucess', sucessMessage)
+    if (sucessMessage) {
+      history.push('/blogs')
+    }
   }
   // console.log('history2', history)
   const handleMouseDownPassword = event => {
