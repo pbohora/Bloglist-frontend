@@ -51,9 +51,11 @@ import DialogBox from '../DialogBox'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    minWidth: 340,
+    minWidth: 270,
+    maxWidth: 700,
     padding: 20,
     cursor: 'pointer',
+    alignItems: 'center',
     margin: theme.spacing(4, 0),
     '&:hover': {}
   },
