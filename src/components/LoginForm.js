@@ -43,7 +43,6 @@ const LoginForm = ({
   passWord,
   handleClickShowPassword,
   showPassword,
-  sucessMessage,
   history
 }) => {
   const classes = useStyles()
@@ -52,10 +51,8 @@ const LoginForm = ({
     // console.log(event)
     event.preventDefault()
     handleLogin(event)
-    console.log('sucess', sucessMessage)
-    if (sucessMessage) {
-      history.push('/blogs')
-    }
+
+    history.push('/blogs')
   }
   // console.log('history2', history)
   const handleMouseDownPassword = event => {
