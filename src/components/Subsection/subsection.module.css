@@ -1,0 +1,19 @@
+.root {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.item {
+    max-width: 55%;
+    padding: 0 16px;
+
+}
+
+@media only screen and (max-width: 800px) {
+    .item {
+        max-width: 100%;
+        padding: 4px 0;
+    }
+}
