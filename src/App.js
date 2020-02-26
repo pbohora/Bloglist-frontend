@@ -7,6 +7,7 @@ import { useField } from './hooks'
 
 import HomePage from './Pages/HomePage'
 import LoginPage from './Pages/LoginPage'
+import SignupPage from './Pages/SignupPage'
 import BlogPage from './Pages/BlogsPage'
 import CreateBlogPage from './Pages/CreateBlogPage'
 
@@ -219,6 +220,19 @@ const App = () => {
               handleLogin={handleLogin}
               userName={userName}
               passWord={passWord}
+              handleClickShowPassword={handleClickShowPassword}
+              showPassword={showPassword}
+              sucessMessage={sucessMessage}
+              errorMessage={errorMessage}
+            />
+          )}
+        />
+        <Route
+          path='/signup'
+          render={() => (
+            <SignupPage
+              user={user}
+              handleLogOut={handleLogout}
               handleClickShowPassword={handleClickShowPassword}
               showPassword={showPassword}
               sucessMessage={sucessMessage}
