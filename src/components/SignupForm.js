@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   loginButton: {
     background: '#45d0ff',
     color: 'white',
-    width: 120,
+    maxWidth: 110,
     '&:hover': {
       background: '#09aae0'
     }
@@ -36,13 +36,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const SignupForm = ({
-  handleLogin,
-  userName,
-  passWord,
-  handleClickShowPassword,
-  showPassword
-}) => {
+const SignupForm = ({ handleClickShowPassword, showPassword }) => {
   const classes = useStyles()
 
   const handleMouseDownPassword = event => {
@@ -52,7 +46,7 @@ const SignupForm = ({
   return (
     <>
       <Card className={classes.root}>
-        <form onSubmit={handleLogin}>
+        <form>
           <CardContent>
             <div>
               <FormControl fullWidth className={classes.margin}>
@@ -68,7 +62,6 @@ const SignupForm = ({
                 <Input
                   id='input-with-icon-adornment'
                   placeholder='User Name'
-                  {...userName}
                   endAdornment={
                     <InputAdornment position='start'>
                       <AccountCircle />
@@ -124,7 +117,6 @@ const SignupForm = ({
               size='large'
               variant='contained'
               color='secondary'
-              onClick={() => (userName.onClick(), passWord.onClick())}
             >
               Cancel
             </Button>
@@ -132,7 +124,6 @@ const SignupForm = ({
               className={classes.loginButton}
               size='large'
               variant='contained'
-              onClick={handleLogin}
               type='submit'
             >
               Sign up

@@ -164,7 +164,7 @@ export default function Navbar({ user, handleLogOut }) {
           </MenuItem>
         ) : (
           <div>
-            <Link to='/login'>
+            <Link to='/signup'>
               <MenuItem
                 className={classes.mobileMenuItem}
                 onClick={handleClose}
