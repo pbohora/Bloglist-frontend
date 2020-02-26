@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   loginButton: {
     background: '#45d0ff',
     color: 'white',
-    width: 120,
+    maxWidth: 110,
     '&:hover': {
       background: '#09aae0'
     }
