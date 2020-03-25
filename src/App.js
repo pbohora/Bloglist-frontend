@@ -23,6 +23,7 @@ const App = () => {
   const userName = useField('text')
   const passWord = useField(showPassword ? 'text' : 'password')
 
+  console.log(user)
   const username = userName.value
   const password = passWord.value
   console.log(userName, passWord)

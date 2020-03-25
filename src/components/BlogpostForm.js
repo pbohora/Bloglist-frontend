@@ -45,7 +45,7 @@ const BlogpostForm = ({ onBlogSubmit, handleChange, newBlog, history }) => {
           value={newBlog.title}
           name='title'
           onChange={handleChange}
-          id='outlined-basic'
+          id='title'
           label='Blog Title'
           variant='outlined'
         />
@@ -58,7 +58,7 @@ const BlogpostForm = ({ onBlogSubmit, handleChange, newBlog, history }) => {
           value={newBlog.author}
           name='author'
           onChange={handleChange}
-          id='outlined-basic'
+          id='author'
           label='Author'
           variant='outlined'
         />
@@ -71,7 +71,7 @@ const BlogpostForm = ({ onBlogSubmit, handleChange, newBlog, history }) => {
           value={newBlog.url}
           name='url'
           onChange={handleChange}
-          id='outlined-basic'
+          id='url'
           label='Blog URL'
           variant='outlined'
         />
@@ -79,6 +79,7 @@ const BlogpostForm = ({ onBlogSubmit, handleChange, newBlog, history }) => {
 
       <CardActions>
         <Button
+          id='add-blog'
           className={classes.createButton}
           size='large'
           variant='contained'
