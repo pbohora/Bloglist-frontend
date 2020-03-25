@@ -67,7 +67,7 @@ const LoginForm = ({
             <div>
               <FormControl fullWidth className={classes.margin}>
                 <Input
-                  id='input-with-icon-adornment'
+                  id='username'
                   placeholder='User Name'
                   {...userName}
                   endAdornment={
@@ -81,7 +81,7 @@ const LoginForm = ({
             <div>
               <FormControl fullWidth className={classes.margin}>
                 <Input
-                  id='standard-adornment-password'
+                  id='password'
                   placeholder='Password'
                   {...passWord}
                   endAdornment={
@@ -101,6 +101,7 @@ const LoginForm = ({
           </CardContent>
           <CardActions>
             <Button
+              id='reset-button'
               className={classes.resetButton}
               size='large'
               variant='contained'
@@ -110,6 +111,7 @@ const LoginForm = ({
               Reset
             </Button>
             <Button
+              id='login-button'
               className={classes.loginButton}
               size='large'
               variant='contained'
