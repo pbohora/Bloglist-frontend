@@ -114,8 +114,9 @@ const Blog = ({
                 <a href=''>{blog.url}</a>
               </Typography>
             </CardContent>
-            <CardActions disableSpacing>
+            <CardActions disableSpacing id='action'>
               <IconButton
+                id='like-button'
                 className={classes.likeIcon}
                 aria-label='add to favorites'
                 onClick={() => handleLike(blog.id)}
@@ -125,6 +126,7 @@ const Blog = ({
               {blog.likes} Likes
               {user !== null && user.id === blog.user.id && (
                 <IconButton
+                  id='delete-button'
                   className={classes.deleteIcon}
                   aria-label='delete'
                   onClick={() => handleRemove(blog.id, result)}

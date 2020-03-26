@@ -51,5 +51,32 @@ describe('Blog app', function() {
 
       cy.contains('hello cypress')
     })
+
+    describe('blog exists', function() {
+      beforeEach(function() {
+        cy.createBlog({ title: 'e2e testing', author: 'John', url: 'e2e.com' })
+        cy.createBlog({
+          title: 'fullstack testing',
+          author: 'Matti',
+          url: 'fullstack.com'
+        })
+        cy.createBlog({
+          title: 'frontend testing',
+          author: 'Selen',
+          url: 'frontend.com'
+        })
+      })
+
+      it('it can be liked', function() {
+        cy.contains('e2e testing')
+          .click()
+          .get('#like-button')
+          .click()
+
+        cy.contains('e2e testing')
+          .get('#action')
+          .should('contain', 1)
+      })
+    })
   })
 })
