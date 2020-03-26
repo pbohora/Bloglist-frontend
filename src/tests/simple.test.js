@@ -47,6 +47,56 @@ test('blog component initially shows title and author', () => {
   )
   const likes = component.container.querySelector('.likes')
   const title = component.container.querySelector('.header')
-  expect(title).toHaveTextContent('react vs angular Raame')
+  expect(title).toHaveTextContent('react vs angularRaame')
   expect(likes).toBe(null)
+})
+
+test('blog shows url and like', () => {
+  const blog = {
+    title: 'react vs angular',
+    author: 'Raame',
+    likes: 3,
+    user: { name: 'hari', id: 1 }
+  }
+  const user = { name: 'hari', id: 1 }
+  const onClick = jest.fn()
+
+  const component = render(
+    <Blog blog={blog} handleLike={onClick} handleRemove={onClick} user={user} />
+  )
+
+  const title = component.container.querySelector('.header')
+  fireEvent.click(title)
+
+  const like = component.getByTestId('like-button')
+  expect(like).not.toBe(null)
+})
+
+test('like clicked twice', () => {
+  const blog = {
+    title: 'react vs angular',
+    author: 'Raame',
+    likes: 3,
+    user: { name: 'hari', id: 1 }
+  }
+  const user = { name: 'hari', id: 1 }
+  const onClick = jest.fn()
+  const mockHandler = jest.fn()
+  const component = render(
+    <Blog
+      blog={blog}
+      handleLike={mockHandler}
+      handleRemove={onClick}
+      user={user}
+    />
+  )
+  const title = component.container.querySelector('.header')
+  fireEvent.click(title)
+
+  const like = component.getByTestId('like-button')
+
+  fireEvent.click(like)
+  fireEvent.click(like)
+
+  expect(mockHandler.mock.calls.length).toBe(2)
 })

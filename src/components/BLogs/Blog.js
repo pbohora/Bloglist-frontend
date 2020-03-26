@@ -117,6 +117,7 @@ const Blog = ({ blog, handleLike, handleRemove, user }) => {
             <CardActions disableSpacing id='action'>
               <IconButton
                 id='like-button'
+                data-testid='like-button'
                 className={classes.likeIcon}
                 aria-label='add to favorites'
                 onClick={() => handleLike(blog.id)}
