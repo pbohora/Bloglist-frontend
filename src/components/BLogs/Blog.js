@@ -74,18 +74,18 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0, 4)
   }
 }))
-const Blog = ({
-  blog,
-  handleLike,
-  handleRemove,
-  user,
-  openDialog,
-  handleClose
-}) => {
+const Blog = ({ blog, handleLike, handleRemove, user }) => {
   const [showDetail, setShowDetail] = useState(false)
-  const [result, setResult] = useState(false)
+
+  const [openDialog, setOpenDialog] = useState(false)
+
+  const handleClose = () => setOpenDialog(false)
+
   const handleShowDetail = () => setShowDetail(!showDetail)
-  const handleClick = () => setResult(true)
+  const handleClick = () => {
+    handleRemove(blog.id)
+    handleClose()
+  }
 
   const classes = useStyles()
 
@@ -129,7 +129,7 @@ const Blog = ({
                   id='delete-button'
                   className={classes.deleteIcon}
                   aria-label='delete'
-                  onClick={() => handleRemove(blog.id, result)}
+                  onClick={() => setOpenDialog(true)}
                 >
                   <DeleteIcon />
                 </IconButton>

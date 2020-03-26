@@ -18,7 +18,6 @@ const App = () => {
   const [sucessMessage, setSucessMessage] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const [showPassword, setShowPassword] = useState(false)
-  const [openDialog, setOpenDialog] = useState(false)
 
   const userName = useField('text')
   const passWord = useField(showPassword ? 'text' : 'password')
@@ -129,30 +128,24 @@ const App = () => {
     }
   }
 
-  const handleRemove = async (id, result) => {
+  const handleRemove = async id => {
     const blog = blogs.find(blog => blog.id === id)
-    setOpenDialog(true)
     //const result = window.confirm(`Remove ${blog.title}! by ${blog.author}`)
-    if (result) {
-      try {
-        await remove(id)
 
-        setBlogs(blogs.filter(blog => blog.id !== id))
-      } catch (exception) {
-        setErrorMessage('Not authorized to remove')
-        setTimeout(() => {
-          setErrorMessage(null)
-        }, 5000)
-      }
+    try {
+      await remove(id)
+
+      setBlogs(blogs.filter(blog => blog.id !== id))
+    } catch (exception) {
+      setErrorMessage('Not authorized to remove')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
     }
   }
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword)
-  }
-
-  const handleCancelDialog = () => {
-    setOpenDialog(false)
   }
 
   return (
@@ -191,8 +184,6 @@ const App = () => {
               user={user}
               sucessMessage={sucessMessage}
               errorMessage={errorMessage}
-              openDialog={openDialog}
-              handleClose={handleCancelDialog}
             />
           )}
         />
@@ -207,8 +198,6 @@ const App = () => {
               user={user}
               sucessMessage={sucessMessage}
               errorMessage={errorMessage}
-              openDialog={openDialog}
-              handleClose={handleCancelDialog}
             />
           )}
         />

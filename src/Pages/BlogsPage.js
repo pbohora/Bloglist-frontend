@@ -27,7 +27,6 @@ const BlogPage = ({
           handleLike={handleLike}
           handleRemove={handleRemove}
           user={user}
-          openDialog={openDialog}
           handleClose={handleClose}
         />
       </Section>

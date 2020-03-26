@@ -77,6 +77,17 @@ describe('Blog app', function() {
           .get('#action')
           .should('contain', 1)
       })
+
+      it('it can be deleted', function() {
+        cy.contains('fullstack testing')
+          .click()
+          .get('#delete-button')
+          .click()
+
+        cy.contains('e2e testing')
+          .get('#action')
+          .should('contain', 1)
+      })
     })
   })
 })
