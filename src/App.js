@@ -136,6 +136,11 @@ const App = () => {
       await remove(id)
 
       setBlogs(blogs.filter(blog => blog.id !== id))
+      setSucessMessage(`Deteted ${blog.title} by ${blog.author}`)
+
+      setTimeout(() => {
+        setSucessMessage(null)
+      }, 5000)
     } catch (exception) {
       setErrorMessage('Not authorized to remove')
       setTimeout(() => {

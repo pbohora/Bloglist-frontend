@@ -149,6 +149,7 @@ const Blog = ({ blog, handleLike, handleRemove, user }) => {
         openDialog={openDialog}
         handleClose={handleClose}
         handleClick={handleClick}
+        blog={blog}
       />
     </>
   )

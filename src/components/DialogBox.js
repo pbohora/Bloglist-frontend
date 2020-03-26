@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
-const DialogBox = ({ openDialog, handleClick, handleClose }) => {
+const DialogBox = ({ openDialog, handleClick, handleClose, blog }) => {
   return (
     <div>
       <Dialog
@@ -20,7 +20,11 @@ const DialogBox = ({ openDialog, handleClick, handleClose }) => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id='alert-dialog-slide-description'>
-            Are you sure ? you want to delete the blog
+            Are you sure ? you want to delete the blog{' '}
+            <strong>
+              {blog.title} by
+              {blog.author}
+            </strong>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
