@@ -31,7 +31,7 @@ const DialogBox = ({ openDialog, handleClick, handleClose, blog }) => {
           <Button onClick={handleClose} color='primary'>
             Cancel
           </Button>
-          <Button onClick={handleClick} color='secondary'>
+          <Button id='confirm' onClick={handleClick} color='secondary'>
             Delete
           </Button>
         </DialogActions>
