@@ -1,14 +1,19 @@
 import React from 'react'
 import Blog from './Blog'
 
+import { useDispatch, useSelector } from 'react-redux'
+
 const BlogList = ({
-  blogs,
   handleLike,
   handleRemove,
   user,
   openDialog,
   handleClose
 }) => {
+  const blogs = useSelector(({ blogs }) => {
+    return blogs
+  })
+  console.log('blogs', blogs)
   blogs.sort((a, b) => b.likes - a.likes)
   return blogs.map(blog => (
     <Blog

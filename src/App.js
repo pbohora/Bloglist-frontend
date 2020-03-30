@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
+import { initializeBlogs } from './reducers/blogReducer'
+import { useDispatch } from 'react-redux'
+
 import { login } from './services/login'
 import { getAll, create, update, remove, setToken } from './services/blog'
 import { useField } from './hooks'
@@ -26,9 +29,11 @@ const App = () => {
   const username = userName.value
   const password = passWord.value
   console.log(userName, passWord)
+  const dispatch = useDispatch()
   useEffect(() => {
-    getAll().then(returnedBlog => setBlogs(returnedBlog))
-  }, [])
+    dispatch(initializeBlogs())
+  }, [dispatch])
+
   useEffect(() => {
     getAll().then(returnedBlog => setBlogs(returnedBlog))
   }, [newBlog])
