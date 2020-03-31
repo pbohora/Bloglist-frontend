@@ -5,7 +5,7 @@ import { initializeBlogs } from './reducers/blogReducer'
 import { useDispatch } from 'react-redux'
 
 import { login } from './services/login'
-import { getAll, create, update, remove, setToken } from './services/blog'
+import { create, update, remove, setToken } from './services/blog'
 import { useField } from './hooks'
 
 import HomePage from './Pages/HomePage'
@@ -15,7 +15,6 @@ import BlogPage from './Pages/BlogsPage'
 import CreateBlogPage from './Pages/CreateBlogPage'
 
 const App = () => {
-  const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(null)
   const [newBlog, setNewBlog] = useState({ title: '', author: '', url: '' })
   const [sucessMessage, setSucessMessage] = useState(null)
@@ -35,10 +34,6 @@ const App = () => {
   }, [dispatch])
 
   useEffect(() => {
-    getAll().then(returnedBlog => setBlogs(returnedBlog))
-  }, [newBlog])
-
-  useEffect(() => {
     const loggedUser = window.localStorage.getItem('loggedBLogUser')
     if (loggedUser) {
       const user = JSON.parse(loggedUser)
@@ -47,26 +42,6 @@ const App = () => {
       console.log(user.token)
     }
   }, [])
-
-  // const sucessStyle = {
-  //   color: 'green',
-  //   background: 'lightgrey',
-  //   fontSize: '20',
-  //   borderStyle: 'solid',
-  //   borderRadius: '5',
-  //   padding: '10',
-  //   marginBottom: '10'
-  // }
-
-  // const errorStyle = {
-  //   color: 'red',
-  //   background: 'lightgrey',
-  //   fontSize: '20',
-  //   borderStyle: 'solid',
-  //   borderRadius: '5',
-  //   padding: '10',
-  //   marginBottom: '10'
-  // }
 
   const handleChange = e => {
     setNewBlog({ ...newBlog, [e.target.name]: e.target.value })
@@ -161,33 +136,11 @@ const App = () => {
   return (
     <div>
       <Router>
-        {/* {user === null ? (
-          <LoginForm
-            handleLogin={handleLogin}
-            userName={userName}
-            passWord={passWord}
-            handleClickShowPassword={handleClickShowPassword}
-            showPassword={showPassword}
-          />
-        ) : (
-          <div>
-            <p>{`logged in as ${user.name}`}</p>
-            <button onClick={handleLogout}>log out</button>
-            <Togglable buttonLabel='Add Blog'>
-              <BlogpostForm
-                onBlogSubmit={handleBlogSubmit}
-                handleChange={handleChange}
-                newBlog={newBlog}
-              />
-            </Togglable>
-          </div>
-        )} */}
         <Route
           exact
           path='/'
           render={() => (
             <HomePage
-              blogs={blogs}
               handleLogOut={handleLogout}
               handleLike={handleLike}
               handleRemove={handleRemove}
@@ -201,7 +154,6 @@ const App = () => {
           path='/blogs'
           render={() => (
             <BlogPage
-              blogs={blogs}
               handleLogOut={handleLogout}
               handleLike={handleLike}
               handleRemove={handleRemove}

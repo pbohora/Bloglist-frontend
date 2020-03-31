@@ -1,6 +1,6 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable indent */
-import { getAll, create, update, remove, setToken } from '../services/blog'
+import { getAll, create, update, remove } from '../services/blog'
 
 const blogReducer = (state = [], action) => {
   switch (action.type) {
@@ -8,14 +8,14 @@ const blogReducer = (state = [], action) => {
       return [...state, action.data]
     case 'INIT_BLOGS':
       return action.data
-    case 'LIKE_BLOG':
+    case 'UPDATE_BLOG':
       const id = action.data.id
-      const noteToChange = state.find(n => n.id === id)
-      const changedNote = {
-        ...noteToChange,
-        important: !noteToChange.important
-      }
-      return state.map(note => (note.id !== id ? note : changedNote))
+      const likedBlog = action.data
+
+      return state.map(blog => (blog.id !== id ? blog : likedBlog))
+    case 'REMOVE_BLOG':
+      const LikeId = action.data.id
+      return state.filter(blog => blog.id !== LikeId)
     default:
       return state
   }
@@ -31,10 +31,23 @@ export const createBlog = content => {
   }
 }
 
-export const likeBlog = id => {
-  return {
-    type: 'LIKE_BLOG',
-    data: { id }
+export const likeBlog = (id, changedBlog) => {
+  return async dispatch => {
+    const likedBlog = await update(id, changedBlog)
+    dispatch({
+      type: 'UPDATE_BLOG',
+      data: likedBlog
+    })
+  }
+}
+
+export const removeBlog = id => {
+  return async dispatch => {
+    await remove(id)
+    dispatch({
+      type: 'UPDATE_BLOG',
+      data: id
+    })
   }
 }
 

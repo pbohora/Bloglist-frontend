@@ -5,7 +5,6 @@ import BlogList from '../components/BLogs/BlogList'
 
 const BlogPage = ({
   user,
-  blogs,
   handleLike,
   handleRemove,
   sucessMessage,
@@ -23,7 +22,6 @@ const BlogPage = ({
     >
       <Section sectionTitle='Blogs' background={true}>
         <BlogList
-          blogs={blogs}
           handleLike={handleLike}
           handleRemove={handleRemove}
           user={user}
