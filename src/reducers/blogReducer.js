@@ -31,7 +31,7 @@ export const createBlog = content => {
   }
 }
 
-export const likeBlog = (id, changedBlog) => {
+export const updateBlog = (id, changedBlog) => {
   return async dispatch => {
     const likedBlog = await update(id, changedBlog)
     dispatch({

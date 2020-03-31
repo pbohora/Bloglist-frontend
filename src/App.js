@@ -5,7 +5,7 @@ import { initializeBlogs } from './reducers/blogReducer'
 import { useDispatch } from 'react-redux'
 
 import { login } from './services/login'
-import { create, update, remove, setToken } from './services/blog'
+import { setToken } from './services/blog'
 import { useField } from './hooks'
 
 import HomePage from './Pages/HomePage'
@@ -47,26 +47,26 @@ const App = () => {
     setNewBlog({ ...newBlog, [e.target.name]: e.target.value })
     //console.log(newBlog)
   }
-  const handleBlogSubmit = async e => {
-    e.preventDefault()
-    try {
-      const returnBlog = await create(newBlog)
+  // const handleBlogSubmit = async e => {
+  //   e.preventDefault()
+  //   try {
+  //     const returnBlog = await create(newBlog)
 
-      setBlogs([...blogs, returnBlog])
-      setSucessMessage(
-        `A new blog ${newBlog.title} by ${newBlog.author} is created`
-      )
-      setNewBlog({ title: '', author: '', url: '' })
-      setTimeout(() => {
-        setSucessMessage(null)
-      }, 5000)
-    } catch (exception) {
-      setErrorMessage('All inputs must be filled')
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
-    }
-  }
+  //     setBlogs([...blogs, returnBlog])
+  //     setSucessMessage(
+  //       `A new blog ${newBlog.title} by ${newBlog.author} is created`
+  //     )
+  //     setNewBlog({ title: '', author: '', url: '' })
+  //     setTimeout(() => {
+  //       setSucessMessage(null)
+  //     }, 5000)
+  //   } catch (exception) {
+  //     setErrorMessage('All inputs must be filled')
+  //     setTimeout(() => {
+  //       setErrorMessage(null)
+  //     }, 5000)
+  //   }
+  // }
 
   const handleLogin = async e => {
     e.preventDefault()
@@ -91,43 +91,43 @@ const App = () => {
     window.localStorage.clear()
   }
 
-  const handleLike = async id => {
-    try {
-      const blog = blogs.find(blog => blog.id === id)
-      console.log(blog)
-      const changedBlog = { ...blog, likes: blog.likes + 1 }
-      const updatedBlog = await update(id, changedBlog)
-      console.log(updatedBlog)
-      setBlogs(blogs.map(blog => (blog.id === id ? updatedBlog : blog)))
-      //console.log(blogs)
-    } catch (exception) {
-      setErrorMessage('can not update')
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
-    }
-  }
+  // const handleLike = async id => {
+  //   try {
+  //     const blog = blogs.find(blog => blog.id === id)
+  //     console.log(blog)
+  //     const changedBlog = { ...blog, likes: blog.likes + 1 }
+  //     const updatedBlog = await update(id, changedBlog)
+  //     console.log(updatedBlog)
+  //     setBlogs(blogs.map(blog => (blog.id === id ? updatedBlog : blog)))
+  //     //console.log(blogs)
+  //   } catch (exception) {
+  //     setErrorMessage('can not update')
+  //     setTimeout(() => {
+  //       setErrorMessage(null)
+  //     }, 5000)
+  //   }
+  // }
 
-  const handleRemove = async id => {
-    const blog = blogs.find(blog => blog.id === id)
-    //const result = window.confirm(`Remove ${blog.title}! by ${blog.author}`)
+  // const handleRemove = async id => {
+  //   const blog = blogs.find(blog => blog.id === id)
+  //   //const result = window.confirm(`Remove ${blog.title}! by ${blog.author}`)
 
-    try {
-      await remove(id)
+  //   try {
+  //     await remove(id)
 
-      setBlogs(blogs.filter(blog => blog.id !== id))
-      setSucessMessage(`Deteted ${blog.title} by ${blog.author}`)
+  //     setBlogs(blogs.filter(blog => blog.id !== id))
+  //     setSucessMessage(`Deteted ${blog.title} by ${blog.author}`)
 
-      setTimeout(() => {
-        setSucessMessage(null)
-      }, 5000)
-    } catch (exception) {
-      setErrorMessage('Not authorized to remove')
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
-    }
-  }
+  //     setTimeout(() => {
+  //       setSucessMessage(null)
+  //     }, 5000)
+  //   } catch (exception) {
+  //     setErrorMessage('Not authorized to remove')
+  //     setTimeout(() => {
+  //       setErrorMessage(null)
+  //     }, 5000)
+  //   }
+  // }
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword)
@@ -142,8 +142,6 @@ const App = () => {
           render={() => (
             <HomePage
               handleLogOut={handleLogout}
-              handleLike={handleLike}
-              handleRemove={handleRemove}
               user={user}
               sucessMessage={sucessMessage}
               errorMessage={errorMessage}
@@ -155,8 +153,6 @@ const App = () => {
           render={() => (
             <BlogPage
               handleLogOut={handleLogout}
-              handleLike={handleLike}
-              handleRemove={handleRemove}
               user={user}
               sucessMessage={sucessMessage}
               errorMessage={errorMessage}
@@ -200,7 +196,6 @@ const App = () => {
               handleLogOut={handleLogout}
               sucessMessage={sucessMessage}
               errorMessage={errorMessage}
-              handleBlogSubmit={handleBlogSubmit}
               handleChange={handleChange}
               newBlog
             />
