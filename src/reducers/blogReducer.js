@@ -23,10 +23,10 @@ const blogReducer = (state = [], action) => {
 
 export const createBlog = content => {
   return async dispatch => {
-    const newBlog = await create(content)
+    const newBlogPost = await create(content)
     dispatch({
       type: 'NEW_BLOG',
-      data: newBlog
+      data: newBlogPost
     })
   }
 }
@@ -45,8 +45,8 @@ export const removeBlog = id => {
   return async dispatch => {
     await remove(id)
     dispatch({
-      type: 'UPDATE_BLOG',
-      data: id
+      type: 'REMOVE_BLOG',
+      data: { id }
     })
   }
 }

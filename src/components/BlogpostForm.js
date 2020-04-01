@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { createBlog } from '../reducers/blogReducer'
 
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
@@ -24,13 +26,23 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(4, 0)
   }
 }))
-const BlogpostForm = ({ onBlogSubmit, handleChange, newBlog, history }) => {
+const BlogpostForm = ({ history }) => {
+  const [newBlog, setNewBlog] = useState({ title: '', author: '', url: '' })
+
   const classes = useStyles()
+
+  const dispatch = useDispatch()
+
+  const handleChange = e => {
+    setNewBlog({ ...newBlog, [e.target.name]: e.target.value })
+    //console.log(newBlog)
+  }
 
   const onSubmit = event => {
     console.log('history', history)
     event.preventDefault()
-    onBlogSubmit(event)
+    dispatch(createBlog(newBlog))
+    setNewBlog({ title: '', author: '', url: '' })
     history.push('/blogs')
   }
   console.log('history22', history)

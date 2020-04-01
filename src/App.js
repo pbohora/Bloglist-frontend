@@ -16,7 +16,7 @@ import CreateBlogPage from './Pages/CreateBlogPage'
 
 const App = () => {
   const [user, setUser] = useState(null)
-  const [newBlog, setNewBlog] = useState({ title: '', author: '', url: '' })
+  // const [newBlog, setNewBlog] = useState({ title: '', author: '', url: '' })
   const [sucessMessage, setSucessMessage] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const [showPassword, setShowPassword] = useState(false)
@@ -31,7 +31,7 @@ const App = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(initializeBlogs())
-  }, [dispatch])
+  }, [])
 
   useEffect(() => {
     const loggedUser = window.localStorage.getItem('loggedBLogUser')
@@ -43,10 +43,10 @@ const App = () => {
     }
   }, [])
 
-  const handleChange = e => {
-    setNewBlog({ ...newBlog, [e.target.name]: e.target.value })
-    //console.log(newBlog)
-  }
+  // const handleChange = e => {
+  //   setNewBlog({ ...newBlog, [e.target.name]: e.target.value })
+  //   //console.log(newBlog)
+  // }
   // const handleBlogSubmit = async e => {
   //   e.preventDefault()
   //   try {
@@ -196,8 +196,6 @@ const App = () => {
               handleLogOut={handleLogout}
               sucessMessage={sucessMessage}
               errorMessage={errorMessage}
-              handleChange={handleChange}
-              newBlog
             />
           )}
         />
