@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, } from 'react'
 import { withRouter } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+
 import { createBlog } from '../reducers/blogReducer'
+import { setSucess, setError } from '../reducers/notificationReducer'
 
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
@@ -38,14 +40,16 @@ const BlogpostForm = ({ history }) => {
     //console.log(newBlog)
   }
 
-  const onSubmit = event => {
+  const onSubmit =e => {
     console.log('history', history)
-    event.preventDefault()
+    e.preventDefault()
     dispatch(createBlog(newBlog))
     setNewBlog({ title: '', author: '', url: '' })
     history.push('/blogs')
   }
-  console.log('history22', history)
+
+
+
 
   return (
     <form className={classes.root} onSubmit={onSubmit}>
