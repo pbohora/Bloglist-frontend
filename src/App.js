@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import { initializeBlogs } from './reducers/blogReducer'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { removeUser, setUser, loginUser } from './reducers/userReducer'
 
 import { login } from './services/login'
 import { setToken } from './services/blog'
@@ -15,7 +16,7 @@ import BlogPage from './Pages/BlogsPage'
 import CreateBlogPage from './Pages/CreateBlogPage'
 
 const App = () => {
-  const [user, setUser] = useState(null)
+  //   const [user, setUser] = useState(null)
   // const [newBlog, setNewBlog] = useState({ title: '', author: '', url: '' })
   const [sucessMessage, setSucessMessage] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
@@ -23,8 +24,13 @@ const App = () => {
 
   const userName = useField('text')
   const passWord = useField(showPassword ? 'text' : 'password')
+  const userData = useSelector(({ user }) => {
+    return user
+  })
 
-  console.log(user)
+  const user = userData.user
+
+  console.log('userrsd', user)
   const username = userName.value
   const password = passWord.value
   console.log(userName, passWord)
@@ -37,8 +43,7 @@ const App = () => {
     const loggedUser = window.localStorage.getItem('loggedBLogUser')
     if (loggedUser) {
       const user = JSON.parse(loggedUser)
-      setUser(user)
-      setToken(user.token)
+      dispatch(setUser(user))
       console.log(user.token)
     }
   }, [])
@@ -68,27 +73,28 @@ const App = () => {
   //   }
   // }
 
-  const handleLogin = async e => {
+  const handleLogin = async (e) => {
     e.preventDefault()
 
-    try {
-      const user = await login({ username, password })
-      console.log(user)
-      window.localStorage.setItem('loggedBLogUser', JSON.stringify(user))
-      setToken(user.token)
-      setUser(user)
-    } catch (exception) {
-      setErrorMessage('Wrong username or password')
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
-    }
+    dispatch(loginUser(username, password))
+
+    //     try {
+    //       const user = await login({ username, password })
+    //       console.log(user)
+    //       window.localStorage.setItem('loggedBLogUser', JSON.stringify(user))
+    //       setToken(user.token)
+    //       setUser(user)
+    //     } catch (exception) {
+    //       setErrorMessage('Wrong username or password')
+    //       setTimeout(() => {
+    //         setErrorMessage(null)
+    //       }, 5000)
+    //     }
   }
 
-  const handleLogout = e => {
+  const handleLogout = (e) => {
     e.preventDefault()
-    setUser(null)
-    window.localStorage.clear()
+    dispatch(removeUser())
   }
 
   // const handleLike = async id => {

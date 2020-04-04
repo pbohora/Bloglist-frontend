@@ -12,7 +12,7 @@ const LoginPage = ({
   showPassword,
   sucessMessage,
   errorMessage,
-  handleLogOut
+  handleLogOut,
 }) => {
   return (
     <Layout

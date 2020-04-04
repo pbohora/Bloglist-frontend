@@ -9,7 +9,7 @@ import userReducer from './reducers/userReducer'
 const reducer = combineReducers({
   blogs: blogReducer,
   notification: notificationReducer,
-  users: userReducer
+  user: userReducer,
 })
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
