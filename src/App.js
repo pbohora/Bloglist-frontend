@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { initializeBlogs } from './reducers/blogReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeUser, setUser, loginUser } from './reducers/userReducer'
+import { allUsers } from './reducers/usersReducer'
 
 import { login } from './services/login'
 import { setToken } from './services/blog'
@@ -37,6 +38,10 @@ const App = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(initializeBlogs())
+  }, [])
+
+  useEffect(() => {
+    dispatch(allUsers())
   }, [])
 
   useEffect(() => {
