@@ -7,6 +7,7 @@ import { setSucess, setError } from '../../reducers/notificationReducer'
 
 const BlogList = ({ user, openDialog, handleClose }) => {
   const dispatch = useDispatch()
+
   const blogsData = useSelector(({ blogs }) => {
     return blogs
   })

@@ -13,55 +13,55 @@ import { Link } from 'react-router-dom'
 
 import Logo from '../Assests/logo.png'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    flexGrow: 1
+    flexGrow: 1,
   },
   title: {
     flexGrow: 1,
-    display: 'flex'
+    display: 'flex',
   },
   menuItem: {
     margin: '0 32px',
-    color: 'black'
+    color: 'black',
   },
   logo: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   logoImg: {
     height: 70,
-    width: 85
+    width: 85,
   },
   sectionDesktop: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
-      display: 'flex'
-    }
+      display: 'flex',
+    },
   },
   mobileMenuItem: {
     fontSize: '40px',
     padding: '24px 0',
-    color: 'black'
+    color: 'black',
   },
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('md')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   mobileMenu: {
     width: '100vw',
     height: '100vh',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   cancelButton: {
     marginLeft: 'auto',
     paddingRight: '40px',
-    color: 'black'
-  }
+    color: 'black',
+  },
 }))
 
 export default function Navbar({ user, handleLogOut }) {
@@ -72,10 +72,10 @@ export default function Navbar({ user, handleLogOut }) {
   const open = Boolean(anchorEl)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
-  const handleMenu = event => {
+  const handleMenu = (event) => {
     setAnchorEl(event.currentTarget)
   }
-  const handleLogOutAndClose = e => {
+  const handleLogOutAndClose = (e) => {
     handleLogOut(e)
     setAnchorEl(null)
   }
@@ -88,7 +88,7 @@ export default function Navbar({ user, handleLogOut }) {
     handleMobileMenuClose()
   }
 
-  const handleMobileMenuOpen = event => {
+  const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget)
   }
 
@@ -134,6 +134,11 @@ export default function Navbar({ user, handleLogOut }) {
         <Link to='/blogs'>
           <MenuItem className={classes.mobileMenuItem} onClick={handleClose}>
             Blogs
+          </MenuItem>
+        </Link>
+        <Link to='/users'>
+          <MenuItem className={classes.mobileMenuItem} onClick={handleClose}>
+            Users
           </MenuItem>
         </Link>
         {user && (
@@ -199,6 +204,11 @@ export default function Navbar({ user, handleLogOut }) {
               <Link to='/blogs'>
                 <MenuItem className={classes.menuItem} onClick={handleClose}>
                   Blogs
+                </MenuItem>
+              </Link>
+              <Link to='/users'>
+                <MenuItem className={classes.menuItem} onClick={handleClose}>
+                  Users
                 </MenuItem>
               </Link>
               {user && (

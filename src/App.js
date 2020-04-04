@@ -15,6 +15,8 @@ import LoginPage from './Pages/LoginPage'
 import SignupPage from './Pages/SignupPage'
 import BlogPage from './Pages/BlogsPage'
 import CreateBlogPage from './Pages/CreateBlogPage'
+import UsersPage from './Pages/UsersPage'
+import SingleUserPage from './Pages/SingleUserPage'
 
 const App = () => {
   //   const [user, setUser] = useState(null)
@@ -168,6 +170,17 @@ const App = () => {
               sucessMessage={sucessMessage}
               errorMessage={errorMessage}
             />
+          )}
+        />
+        <Route
+          exact
+          path='/users'
+          render={() => <UsersPage handleLogOut={handleLogout} user={user} />}
+        />
+        <Route
+          path='/users/:id'
+          render={() => (
+            <SingleUserPage handleLogOut={handleLogout} user={user} />
           )}
         />
         <Route
