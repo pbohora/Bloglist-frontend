@@ -53,7 +53,7 @@ export const loginUser = (username, password) => {
     } catch (error) {
       dispatch({
         type: 'SET_ERROR',
-        data: 'All fields must be filled',
+        data: 'Invalid username or password',
       })
       setTimeout(
         () =>

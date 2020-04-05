@@ -17,6 +17,7 @@ import BlogPage from './Pages/BlogsPage'
 import CreateBlogPage from './Pages/CreateBlogPage'
 import UsersPage from './Pages/UsersPage'
 import SingleUserPage from './Pages/SingleUserPage'
+import SingleBlogPage from './Pages/SingleBlogPage'
 
 const App = () => {
   //   const [user, setUser] = useState(null)
@@ -162,6 +163,7 @@ const App = () => {
           )}
         />
         <Route
+          exact
           path='/blogs'
           render={() => (
             <BlogPage
@@ -181,6 +183,12 @@ const App = () => {
           path='/users/:id'
           render={() => (
             <SingleUserPage handleLogOut={handleLogout} user={user} />
+          )}
+        />
+        <Route
+          path='/blogs/:id'
+          render={() => (
+            <SingleBlogPage handleLogOut={handleLogout} user={user} />
           )}
         />
         <Route

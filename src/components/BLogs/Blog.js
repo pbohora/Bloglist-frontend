@@ -1,42 +1,7 @@
-// const Blog = ({ blog, handleLike, handleRemove, user }) => {
-//   const [showDetail, setShowDetail] = useState(false)
-//   const handleShowDetail = () => setShowDetail(!showDetail)
-
-//   const blogStyle = {
-//     paddingTop: 10,
-//     paddingBottom: 10,
-//     paddingLeft: 2,
-//     border: 'solid',
-//     borderWidth: 1,
-//     margin: 15
-//   }
-
-//   return (
-//     <div style={blogStyle}>
-//       <div onClick={handleShowDetail} className='header'>
-//         {blog.title} {blog.author}
-//       </div>
-//       {showDetail && (
-//         <div>
-//           <div>
-//             <a href=''>{blog.url}</a>
-//           </div>
-//           <div>
-//             {blog.likes} likes
-//             <button onClick={() => handleLike(blog.id)}>like</button>
-//             <div>Added by {blog.user.name} </div>
-//             {user !== null && user.id === blog.user.id && (
-//               <button onClick={() => handleRemove(blog.id)}>remove</button>
-//             )}
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   )
-// }
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
@@ -46,10 +11,11 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import DeleteIcon from '@material-ui/icons/Delete'
+import Button from '@material-ui/core/Button'
 
 import DialogBox from '../DialogBox'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 270,
     maxWidth: 700,
@@ -57,24 +23,32 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
     alignItems: 'center',
     margin: theme.spacing(4, 0),
-    '&:hover': {}
+    '&:hover': {},
+  },
+  readMoreButton: {
+    background: '#66605b',
+    color: 'white',
+    maxWidth: 160,
+    '&:hover': {
+      background: '#1a1918',
+    },
   },
   likeIcon: {
     '&:hover': {
-      color: 'blue'
-    }
+      color: 'blue',
+    },
   },
   deleteIcon: {
     '&:hover': {
-      color: 'red'
-    }
+      color: 'red',
+    },
   },
   addedby: {
     marginLeft: 'auto',
-    padding: theme.spacing(0, 4)
-  }
+    padding: theme.spacing(0, 4),
+  },
 }))
-const Blog = ({ blog, handleLike, handleRemove, user }) => {
+const Blog = ({ blog, handleLike, handleRemove, user, history }) => {
   const [showDetail, setShowDetail] = useState(false)
 
   const [openDialog, setOpenDialog] = useState(false)
@@ -85,6 +59,11 @@ const Blog = ({ blog, handleLike, handleRemove, user }) => {
   const handleClick = () => {
     handleRemove(blog.id)
     handleClose()
+  }
+
+  const onSubmit = (event) => {
+    event.preventDefault()
+    history.push(`/blogs/${blog.id}`)
   }
 
   const classes = useStyles()
@@ -114,6 +93,15 @@ const Blog = ({ blog, handleLike, handleRemove, user }) => {
                 <a href=''>{blog.url}</a>
               </Typography>
             </CardContent>
+            <Button
+              id='login-button'
+              className={classes.readMoreButton}
+              size='large'
+              variant='contained'
+              onClick={onSubmit}
+            >
+              Read More
+            </Button>
             <CardActions disableSpacing id='action'>
               <IconButton
                 id='like-button'
@@ -159,7 +147,7 @@ Blog.propTypes = {
   blog: PropTypes.objectOf(PropTypes.any).isRequired,
   user: PropTypes.objectOf(PropTypes.any),
   handleLike: PropTypes.func.isRequired,
-  handleRemove: PropTypes.func.isRequired
+  handleRemove: PropTypes.func.isRequired,
 }
 
-export default Blog
+export default withRouter(Blog)

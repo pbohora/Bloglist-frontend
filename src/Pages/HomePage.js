@@ -8,16 +8,16 @@ import Subsection from '../components/Subsection/Subsection'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   signin: {
     alignSelf: 'center',
     width: '160px',
     padding: '10px 40px',
     background: 'rgb(243, 116, 31)',
     '&:hover': {
-      background: 'rgb(243, 116, 31)'
-    }
-  }
+      background: 'rgb(243, 116, 31)',
+    },
+  },
 }))
 
 const HomePage = ({
@@ -25,11 +25,11 @@ const HomePage = ({
   handleLogOut,
   sucessMessage,
   errorMessage,
-  history
+  history,
 }) => {
   const classes = useStyles()
 
-  const onSubmit = event => {
+  const onSubmit = (event) => {
     event.preventDefault()
     history.push('/signup')
   }
@@ -56,7 +56,7 @@ const HomePage = ({
             type='submit'
             className={classes.signin}
           >
-            Sign in
+            Sign up
           </Button>
         )}
       </Section>

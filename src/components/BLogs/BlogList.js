@@ -16,17 +16,10 @@ const BlogList = ({ user, openDialog, handleClose }) => {
   console.log('blogsData', blogsData)
 
   const handleLike = async (id) => {
-    try {
-      const blog = blogs.find((blog) => blog.id === id)
-      console.log(blog)
-      const changedBlog = { ...blog, likes: blog.likes + 1 }
-      dispatch(updateBlog(id, changedBlog))
-    } catch (exception) {
-      dispatch(setError('can not update'))
-      setTimeout(() => {
-        dispatch(setError(null))
-      }, 5000)
-    }
+    const blog = blogs.find((blog) => blog.id === id)
+    console.log(blog)
+    const changedBlog = { ...blog, likes: blog.likes + 1 }
+    dispatch(updateBlog(id, changedBlog))
   }
 
   const handleRemove = async (id) => {
