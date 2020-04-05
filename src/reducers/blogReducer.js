@@ -16,10 +16,10 @@ const blogReducer = (state = initialState, action) => {
       return { blogs: action.data, error: null, sucess: null }
     case 'UPDATE_BLOG':
       const id = action.data.id
-      const likedBlog = action.data
+      const updatedBlog = action.data
 
       return {
-        blogs: state.blogs.map((blog) => (blog.id !== id ? blog : likedBlog)),
+        blogs: state.blogs.map((blog) => (blog.id !== id ? blog : updatedBlog)),
         error: null,
         sucess: null,
       }
@@ -78,10 +78,10 @@ export const createBlog = (content) => {
 
 export const updateBlog = (id, changedBlog) => {
   return async (dispatch) => {
-    const likedBlog = await update(id, changedBlog)
+    const updatedBlog = await update(id, changedBlog)
     dispatch({
       type: 'UPDATE_BLOG',
-      data: likedBlog,
+      data: updatedBlog,
     })
   }
 }

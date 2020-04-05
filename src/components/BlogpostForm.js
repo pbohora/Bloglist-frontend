@@ -1,4 +1,4 @@
-import React, { useState, } from 'react'
+import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
@@ -11,22 +11,22 @@ import CardActions from '@material-ui/core/CardActions'
 import FormControl from '@material-ui/core/FormControl'
 import Button from '@material-ui/core/Button'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     padding: 60,
-    background: 'white'
+    background: 'white',
   },
   createButton: {
     marginLeft: 'auto',
     background: 'rgb(243, 116, 31)',
     '&:hover': {
-      background: 'rgb(243, 116, 31)'
-    }
+      background: 'rgb(243, 116, 31)',
+    },
   },
 
   margin: {
-    margin: theme.spacing(4, 0)
-  }
+    margin: theme.spacing(4, 0),
+  },
 }))
 const BlogpostForm = ({ history }) => {
   const [newBlog, setNewBlog] = useState({ title: '', author: '', url: '' })
@@ -35,21 +35,18 @@ const BlogpostForm = ({ history }) => {
 
   const dispatch = useDispatch()
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setNewBlog({ ...newBlog, [e.target.name]: e.target.value })
     //console.log(newBlog)
   }
 
-  const onSubmit =e => {
+  const onSubmit = (e) => {
     console.log('history', history)
     e.preventDefault()
     dispatch(createBlog(newBlog))
     setNewBlog({ title: '', author: '', url: '' })
     history.push('/blogs')
   }
-
-
-
 
   return (
     <form className={classes.root} onSubmit={onSubmit}>

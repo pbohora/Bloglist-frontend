@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
   likeIcon: {
     '&:hover': {
-      color: 'blue',
+      color: '#024517',
     },
   },
   deleteIcon: {
