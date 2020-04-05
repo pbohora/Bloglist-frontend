@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 const SingleBlogPage = ({ user, handleLogOut }) => {
   const classes = useStyles()
 
-  const [newComment, setNewComment] = useState(null)
+  const [newComment, setNewComment] = useState('')
   const dispatch = useDispatch()
 
   const blogsData = useSelector(({ blogs }) => {
@@ -52,15 +52,18 @@ const SingleBlogPage = ({ user, handleLogOut }) => {
 
   const handleComment = (e) => {
     e.preventDefault()
-    setNewComment(null)
 
     const blog = blogsData.blogs.find((blog) => blog.id === id)
-    console.log('ffdsdsgssgg', blog)
-    const changedBlog = { ...blog, comments: blog.comments.concat(newComment) }
-    console.log('change', changedBlog)
-    dispatch(updateBlog(id, changedBlog))
+    if (newComment.length > 3) {
+      const changedBlog = {
+        ...blog,
+        comments: blog.comments.concat(newComment),
+      }
 
-    console.log('new', newComment)
+      dispatch(updateBlog(id, changedBlog))
+
+      setNewComment('')
+    }
   }
 
   const handleRemove = (id) => {
