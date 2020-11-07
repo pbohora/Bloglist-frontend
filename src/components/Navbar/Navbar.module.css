@@ -1,0 +1,113 @@
+.nav {
+  height: 70px;
+  width: 100%;
+  padding: 0px 50px;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+}
+.navLinks {
+  margin-left: auto;
+  padding: 80px;
+}
+.navLinks > * {
+  font-size: 16px;
+  padding: 20px 8px;
+  margin: 0px 50px;
+  font-weight: bolder;
+  color: black;
+}
+.navLinks > *:hover {
+  transform: translateY(-2px);
+  color: #05a0e7;
+}
+
+.logo {
+  height: 120px;
+  width: 120px;
+  padding: 20px 8px;
+}
+.nav-icon {
+  color: #05a0e7;
+}
+
+.navbarActive {
+  border-bottom: 3px solid #05a0e7;
+  transition: border-bottom 0.5s ease-in-out;
+  color: #05a0e7;
+}
+
+.userIcon {
+  font-size: 24px;
+  border-bottom: 1px solid black;
+  padding: 24px;
+}
+
+.navbarMobile {
+  display: flex;
+  flex-direction: column;
+  margin: 12px 8px;
+  background-color: #fafafa;
+}
+
+.navbar--mobile-items {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  padding: 32px 0px;
+}
+
+.navbar--mobile-items > a {
+  margin: 12px 30px;
+  padding: 12px 16px;
+  border-bottom: 2px solid #05a0e7;
+  color: #05a0e7;
+}
+.navContainer {
+  margin-top: 7em;
+}
+.navButton {
+  margin: 32px 24px;
+  width: 85%;
+  border: 3px solid #05a0e7;
+}
+
+.navUser {
+  margin-left: auto;
+  color: #05a0e7;
+}
+.loginButton {
+  cursor: pointer;
+}
+.loginButton:hover {
+  color: #05a0e7;
+}
+
+@media screen and (max-width: 1100px) {
+  .nav {
+    padding: 0 16px;
+  }
+  .nav > * {
+    font-size: 16px;
+    padding: 24px 18px;
+  }
+}
+@media screen and (max-width: 950px) {
+  .nav {
+    padding: 0 12px;
+  }
+  .nav > * {
+    font-size: 14px;
+    padding: 24px 18px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navContainer {
+    margin-top: 2em;
+  }
+}

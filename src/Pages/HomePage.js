@@ -1,70 +1,116 @@
-import React from 'react'
-import { withRouter } from 'react-router-dom'
+import React from "react";
+import { useHistory } from "react-router-dom";
 
-import Layout from '../components/Layout'
-import Section from '../components/Section/Section'
-import Subsection from '../components/Subsection/Subsection'
+import Layout from "../components/Layout";
+import Section from "../components/Section/Section";
+import blogImage from "../Assests/workplace.png";
 
-import { makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   signin: {
-    alignSelf: 'center',
-    width: '160px',
-    padding: '10px 40px',
-    background: 'rgb(243, 116, 31)',
-    '&:hover': {
-      background: 'rgb(243, 116, 31)',
+    alignSelf: "center",
+    width: "180px",
+    padding: "10px 40px",
+    marginRight: "16px",
+    background: " #05a0e7",
+    color: "white",
+    "&:hover": {
+      background: "#0479af",
     },
   },
-}))
+  blog: {
+    alignSelf: "center",
+    width: "180px",
+    padding: "10px 40px",
+    marginLeft: "16px",
+    background: "#fafafa",
+    border: "1px solid #1a1a1a",
+    color: "#1a1a1a",
+    "&:hover": {
+      background: "#1a1a1a",
+      color: "white",
+    },
+  },
+}));
 
-const HomePage = ({
-  user,
-  handleLogOut,
-  sucessMessage,
-  errorMessage,
-  history,
-}) => {
-  const classes = useStyles()
+const HomePage = ({ user, handleLogOut, sucessMessage, errorMessage }) => {
+  const classes = useStyles();
+  const history = useHistory();
 
   const onSubmit = (event) => {
-    event.preventDefault()
-    history.push('/signup')
-  }
+    history.push("/signup");
+  };
+
+  const handleClick = () => {
+    history.push("/blogs");
+  };
 
   return (
-    <Layout
-      user={user}
-      handleLogOut={handleLogOut}
-      sucessMessage={sucessMessage}
-      errorMessage={errorMessage}
+    <div
+      style={{
+        maxHeight: "100vh",
+      }}
     >
-      <Section
-        subTitle={'A new platform to create your blog for free .'}
-        description={
-          'Create a unique and beautiful blog. It’s easy and free. Save the moments that matter. Blogger lets you safely store thousands of posts, photos, and more with Google for free.'
-        }
-        background
+      <Layout
+        user={user}
+        handleLogOut={handleLogOut}
+        sucessMessage={sucessMessage}
+        errorMessage={errorMessage}
       >
-        {!user && (
-          <Button
-            onClick={onSubmit}
-            size='large'
-            variant='contained'
-            type='submit'
-            className={classes.signin}
+        <Section>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100%",
+            }}
           >
-            Sign up
-          </Button>
-        )}
-      </Section>
-      <Section>
-        <Subsection />
-      </Section>
-    </Layout>
-  )
-}
+            <div>
+              <h2>
+                <span style={{ color: "#05a0e7" }}>Create</span> or{" "}
+                <span style={{ color: "#05a0e7" }}>Read</span> your favorite
+                blog anywhare, anytime.
+              </h2>
+              <p style={{ fontSize: "18px" }}>
+                Create a unique and beautiful blog. It’s easy and free. Save the
+                moments that matter.{" "}
+                <span style={{ color: "#05a0e7" }}>My Blogs</span> lets you
+                safely store or explore thousands of blog posts for free.
+              </p>
+              <div style={{ marginTop: "32px" }}>
+                {!user && (
+                  <Button
+                    onClick={onSubmit}
+                    size="large"
+                    variant="contained"
+                    type="submit"
+                    className={classes.signin}
+                  >
+                    Sign up
+                  </Button>
+                )}
+                <Button
+                  onClick={handleClick}
+                  size="large"
+                  variant="contained"
+                  type="submit"
+                  className={classes.blog}
+                >
+                  Blogs
+                </Button>
+              </div>
+            </div>
 
-export default withRouter(HomePage)
+            <img src={blogImage} alt="img" height="55%" width="55%" />
+          </div>
+        </Section>
+      </Layout>
+    </div>
+  );
+};
+
+export default HomePage;

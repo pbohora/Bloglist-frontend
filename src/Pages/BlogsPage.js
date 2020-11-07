@@ -1,7 +1,8 @@
-import React from 'react'
-import Layout from '../components/Layout'
-import Section from '../components/Section/Section'
-import BlogList from '../components/BLogs/BlogList'
+import React from "react";
+import Layout from "../components/Layout";
+import Section from "../components/Section/Section";
+import BlogList from "../components/BLogs/BlogList";
+import blogImage from "../Assests/woman.png";
 
 const BlogPage = ({
   user,
@@ -11,7 +12,7 @@ const BlogPage = ({
   errorMessage,
   handleLogOut,
   openDialog,
-  handleClose
+  handleClose,
 }) => {
   return (
     <Layout
@@ -20,7 +21,7 @@ const BlogPage = ({
       sucessMessage={sucessMessage}
       errorMessage={errorMessage}
     >
-      <Section sectionTitle='Blogs' background={true}>
+      <Section sectionTitle="Blogs" background={true}>
         <BlogList
           handleLike={handleLike}
           handleRemove={handleRemove}
@@ -29,7 +30,7 @@ const BlogPage = ({
         />
       </Section>
     </Layout>
-  )
-}
+  );
+};
 
-export default BlogPage
+export default BlogPage;

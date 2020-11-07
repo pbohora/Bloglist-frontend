@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
 
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 
-import Navbar from './Navbar'
-import Notification from './Notification'
+import Navbar from "./Navbar/Navbar";
+import Notification from "./Notification";
+import backgroundImage from "../Assests/ring.png";
 
 const Layout = ({
   user,
@@ -13,17 +14,23 @@ const Layout = ({
   children,
 }) => {
   const blogsData = useSelector(({ blogs }) => {
-    return blogs
-  })
+    return blogs;
+  });
 
   return (
-    <>
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundColor: "#fafafa",
+      }}
+    >
       <Navbar user={user} handleLogOut={handleLogOut} />
-      <Notification message={blogsData.sucess} severity='success' />
-      <Notification message={blogsData.error} severity='error' />
-      {children}
-    </>
-  )
-}
 
-export default Layout
+      <Notification message={blogsData.sucess} severity="success" />
+      <Notification message={blogsData.error} severity="error" />
+      <div>{children}</div>
+    </div>
+  );
+};
+
+export default Layout;

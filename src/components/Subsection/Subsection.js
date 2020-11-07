@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 
-import SubSectionStyles from './subsection.module.css'
+import SubSectionStyles from "./subsection.module.css";
 
-import blogImage from '../../Assests/addblog.png'
+import blogImage from "../../Assests/woman.png";
 
 const SubSection = () => {
   return (
@@ -17,9 +17,9 @@ const SubSection = () => {
         </p>
       </div>
 
-      <img src={blogImage} alt='img' height='250' width='300' />
+      <img src={blogImage} alt="img" height="250" width="300" />
     </div>
-  )
-}
+  );
+};
 
-export default SubSection
+export default SubSection;

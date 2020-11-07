@@ -1,12 +1,12 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
-import Grid from '@material-ui/core/Grid'
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 
-const useStyles = makeStyles(theme => ({}))
+const useStyles = makeStyles((theme) => ({}));
 
 const GridComponent = ({ children }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -25,7 +25,7 @@ const GridComponent = ({ children }) => {
         </Grid>
       </Grid>
     </div>
-  )
-}
+  );
+};
 
-export default GridComponent
+export default GridComponent;

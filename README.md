@@ -46,18 +46,24 @@ yarn start
 
 Your site is now running at `http://localhost:3000`
 
+### Production
+
+```
+yarn build
+```
+
 ### Eslint
 
 run eslint
 
 ```
-yarn run lint
+yarn lint
 ```
 
 fix lint
 
 ```
-yarn run lint-fix
+yarn lint-fix
 ```
 
 ### Test
