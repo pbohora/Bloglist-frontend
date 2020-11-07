@@ -45,3 +45,9 @@ fix lint
 ```
 npm run lint-fix
 ```
+### Test
+UI test is done using React testing library and for the E2E testing it uses Cypress.
+
+
+
+
