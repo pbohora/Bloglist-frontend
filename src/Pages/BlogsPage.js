@@ -49,7 +49,7 @@ const BlogPage = ({
             justifyContent: "center",
             alignItems: "center",
             // marginTop: "120px",
-            height: "82vh",
+            height: "80vh",
           }}
         >
           <div>
@@ -75,15 +75,14 @@ const BlogPage = ({
             </Button>
           </div>
         </div>
-        <div>
-          <ScrollableTab />
-          <BlogList
-            handleLike={handleLike}
-            handleRemove={handleRemove}
-            user={user}
-            handleClose={handleClose}
-          />
-        </div>
+
+        <ScrollableTab />
+        <BlogList
+          handleLike={handleLike}
+          handleRemove={handleRemove}
+          user={user}
+          handleClose={handleClose}
+        />
       </Section>
     </Layout>
   );
