@@ -1,12 +1,12 @@
-import React from 'react'
+import React from "react";
 
-import Layout from '../components/Layout'
-import Section from '../components/Section/Section'
-import BlogpostForm from '../components/BlogpostForm'
-import Togglable from '../components/Togglable'
-import Subsection from '../components/Subsection/Subsection'
+import Layout from "../components/Layout";
+import Section from "../components/Section/Section";
+import BlogpostForm from "../components/BlogpostForm";
+import Togglable from "../components/Togglable";
+import Subsection from "../components/Subsection/Subsection";
 
-import Grid from '@material-ui/core/Grid'
+import Grid from "@material-ui/core/Grid";
 
 const CreateBlogPage = ({
   user,
@@ -15,7 +15,7 @@ const CreateBlogPage = ({
   errorMessage,
   handleBlogSubmit,
   handleChange,
-  newBlog
+  newBlog,
 }) => {
   return (
     <Layout
@@ -24,12 +24,8 @@ const CreateBlogPage = ({
       sucessMessage={sucessMessage}
       errorMessage={errorMessage}
     >
-      <Section
-        subTitle={'Create your passion, your way.'}
-        description={'Create a unique and beautiful blog. It’s easy and free.'}
-        background={true}
-      >
-        <Togglable buttonLabel='Add Blog'>
+      <Section>
+        <Togglable buttonLabel="Add Blog">
           <BlogpostForm
             onBlogSubmit={handleBlogSubmit}
             handleChange={handleChange}
@@ -41,7 +37,7 @@ const CreateBlogPage = ({
         <Subsection />
       </Section>
     </Layout>
-  )
-}
+  );
+};
 
-export default CreateBlogPage
+export default CreateBlogPage;
