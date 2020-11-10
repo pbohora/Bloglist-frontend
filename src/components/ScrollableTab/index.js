@@ -67,6 +67,7 @@ const ScrollableTab = () => {
           onChange={handleChange}
           aria-label="styled tabs example"
         >
+          <StyledTab label="All" />
           <StyledTab label="Technology" />
           <StyledTab label="Sports" />
           <StyledTab label="Science" />

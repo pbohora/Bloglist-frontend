@@ -1,0 +1,9 @@
+.layoutContainer {
+  padding: 0px 140px;
+}
+
+@media only screen and (max-width: 800px) {
+  .layoutContainer {
+    padding: 0px 80px;
+  }
+}

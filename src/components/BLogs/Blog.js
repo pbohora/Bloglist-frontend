@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import BoxContainer from "../BoxContainer";
@@ -12,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Button from "@material-ui/core/Button";
+import { updateBlog, removeBlog } from "../../reducers/blogReducer";
 
 import DialogBox from "../DialogBox";
 
@@ -52,7 +54,26 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 4),
   },
 }));
-const Blog = ({ blog, handleLike, handleRemove, user, history }) => {
+const Blog = ({ blog, user, history }) => {
+  const dispatch = useDispatch();
+
+  const blogsData = useSelector(({ blogs }) => {
+    return blogs;
+  });
+  const blogs = blogsData.blogs;
+
+  const handleLike = async (id) => {
+    const blog = blogs.find((blog) => blog.id === id);
+    console.log(blog);
+    const changedBlog = { ...blog, likes: blog.likes + 1 };
+    dispatch(updateBlog(id, changedBlog));
+  };
+
+  const handleRemove = async (id) => {
+    const blog = blogs.find((blog) => blog.id === id);
+
+    dispatch(removeBlog(id));
+  };
   const [showDetail, setShowDetail] = useState(false);
 
   const [openDialog, setOpenDialog] = useState(false);
@@ -89,11 +110,13 @@ const Blog = ({ blog, handleLike, handleRemove, user, history }) => {
                 fontSize: "32px",
                 marginBottom: "8px",
                 fontWeight: "bolder",
+                cursor: "pointer",
+                color: "#05a0e7",
               }}
             >
               {blog.title}
             </div>
-            {user !== null && user.id === blog.user.id && (
+            {blog.user && user !== null && user.id === blog.user.id && (
               <IconButton
                 id="delete-button"
                 className={classes.deleteIcon}
@@ -131,81 +154,13 @@ const Blog = ({ blog, handleLike, handleRemove, user, history }) => {
             </IconButton>
             {blog.likes} Likes
           </div>
-          <p style={{ fontWeight: "bold", color: "#595959" }}>
-            Added by: <span>{blog.user.name}</span>
-          </p>
+          {blog.user && (
+            <p style={{ fontWeight: "bold", color: "#595959" }}>
+              Added by: <span>{blog.user.name}</span>
+            </p>
+          )}
         </div>
       </BoxContainer>
-      {/* <Card className={classes.root}>
-        <CardHeader
-          onClick={handleShowDetail}
-          className="header"
-          title={blog.title}
-          subheader={blog.author}
-          //subheader='September 14, 2016'
-        />
-        {showDetail && (
-          <>
-            <CardContent>
-              <Typography variant="body2" component="p">
-                This impressive paella is a perfect party dish and a fun meal to
-                cook together with your guests. Add 1 cup of frozen peas along
-                with the mussels, if you like.
-              </Typography>
-            </CardContent>
-            <CardContent>
-              <Typography color="textSecondary">
-                Link:
-                <a href="">{blog.url}</a>
-              </Typography>
-            </CardContent>
-            <Button
-              id="login-button"
-              className={classes.readMoreButton}
-              size="large"
-              variant="contained"
-              onClick={onSubmit}
-            >
-              Read More
-            </Button>
-            <CardActions disableSpacing id="action">
-              <IconButton
-                id="like-button"
-                data-testid="like-button"
-                className={classes.likeIcon}
-                aria-label="add to favorites"
-                onClick={() => handleLike(blog.id)}
-              >
-                <FavoriteIcon />
-              </IconButton>
-              {blog.likes} Likes
-              {user !== null && user.id === blog.user.id && (
-                <IconButton
-                  id="delete-button"
-                  className={classes.deleteIcon}
-                  aria-label="delete"
-                  onClick={() => setOpenDialog(true)}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              )}
-              <Typography
-                className={classes.addedby}
-                color="textSecondary"
-                component="p"
-              >
-                Added by {blog.user.name}
-              </Typography>
-            </CardActions>
-          </>
-        )}
-      </Card>
-      <DialogBox
-        openDialog={openDialog}
-        handleClose={handleClose}
-        handleClick={handleClick}
-        blog={blog}
-      /> */}
     </>
   );
 };

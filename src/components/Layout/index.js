@@ -2,9 +2,9 @@ import React from "react";
 
 import { useSelector } from "react-redux";
 
-import Navbar from "./Navbar/Navbar";
-import Notification from "./Notification";
-import backgroundImage from "../Assests/ring.png";
+import Navbar from "../Navbar/Navbar";
+import Notification from "../Notification";
+import LayoutStyle from "./layout.module.css";
 
 const Layout = ({
   user,
@@ -28,7 +28,7 @@ const Layout = ({
 
       <Notification message={blogsData.sucess} severity="success" />
       <Notification message={blogsData.error} severity="error" />
-      <div>{children}</div>
+      <div className={LayoutStyle.layoutContainer}>{children}</div>
     </div>
   );
 };
