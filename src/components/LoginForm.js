@@ -1,41 +1,41 @@
-import React from 'react'
-import { withRouter } from 'react-router-dom'
+import React from "react";
+import { withRouter } from "react-router-dom";
 
-import { makeStyles } from '@material-ui/core/styles'
-import Input from '@material-ui/core/Input'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import FormControl from '@material-ui/core/FormControl'
-import AccountCircle from '@material-ui/icons/AccountCircle'
-import IconButton from '@material-ui/core/IconButton'
-import Visibility from '@material-ui/icons/Visibility'
-import VisibilityOff from '@material-ui/icons/VisibilityOff'
-import Button from '@material-ui/core/Button'
-import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
-import CardContent from '@material-ui/core/CardContent'
+import { makeStyles } from "@material-ui/core/styles";
+import Input from "@material-ui/core/Input";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import FormControl from "@material-ui/core/FormControl";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     padding: 60,
-    alignSelf: 'center'
+
+    height: "100%",
   },
 
   margin: {
-    margin: theme.spacing(4, 0)
+    margin: theme.spacing(5, 0),
   },
 
   loginButton: {
-    background: '#45d0ff',
-    color: 'white',
-    maxWidth: 110,
-    '&:hover': {
-      background: '#09aae0'
-    }
+    background: "#45d0ff",
+    color: "white",
+    marginLeft: "auto",
+    width: "180px",
+    padding: "10px 40px",
+    "&:hover": {
+      background: "#09aae0",
+    },
   },
-  resetButton: {
-    marginLeft: 'auto'
-  }
-}))
+}));
 
 const LoginForm = ({
   handleLogin,
@@ -43,35 +43,35 @@ const LoginForm = ({
   passWord,
   handleClickShowPassword,
   showPassword,
-  history
+  history,
 }) => {
-  const classes = useStyles()
+  const classes = useStyles();
   // console.log('history', history)
-  const onSubmit = event => {
+  const onSubmit = (event) => {
     // console.log(event)
-    event.preventDefault()
-    handleLogin(event)
+    event.preventDefault();
+    handleLogin(event);
 
-    history.push('/blogs')
-  }
+    history.push("/blogs");
+  };
   // console.log('history2', history)
-  const handleMouseDownPassword = event => {
-    event.preventDefault()
-  }
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   return (
     <>
-      <Card className={classes.root}>
+      <div className={classes.root}>
         <form onSubmit={onSubmit}>
           <CardContent>
             <div>
-              <FormControl fullWidth className={classes.margin}>
+              <FormControl className={classes.margin} variant="outlined">
                 <Input
-                  id='username'
-                  placeholder='User Name'
+                  id="username"
+                  placeholder="User Name"
                   {...userName}
                   endAdornment={
-                    <InputAdornment position='start'>
+                    <InputAdornment position="start">
                       <AccountCircle />
                     </InputAdornment>
                   }
@@ -79,15 +79,15 @@ const LoginForm = ({
               </FormControl>
             </div>
             <div>
-              <FormControl fullWidth className={classes.margin}>
+              <FormControl className={classes.margin}>
                 <Input
-                  id='password'
-                  placeholder='Password'
+                  id="password"
+                  placeholder="Password"
                   {...passWord}
                   endAdornment={
-                    <InputAdornment position='end'>
+                    <InputAdornment position="end">
                       <IconButton
-                        aria-label='toggle password visibility'
+                        aria-label="toggle password visibility"
                         onClick={handleClickShowPassword}
                         onMouseDown={handleMouseDownPassword}
                       >
@@ -100,7 +100,7 @@ const LoginForm = ({
             </div>
           </CardContent>
           <CardActions>
-            <Button
+            {/* <Button
               id='reset-button'
               className={classes.resetButton}
               size='large'
@@ -109,21 +109,21 @@ const LoginForm = ({
               onClick={() => (userName.onClick(), passWord.onClick())}
             >
               Reset
-            </Button>
+            </Button> */}
             <Button
-              id='login-button'
+              id="login-button"
               className={classes.loginButton}
-              size='large'
-              variant='contained'
-              type='submit'
+              size="large"
+              variant="contained"
+              type="submit"
             >
               Login
             </Button>
           </CardActions>
         </form>
-      </Card>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default withRouter(LoginForm)
+export default withRouter(LoginForm);

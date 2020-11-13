@@ -3,14 +3,13 @@ import Layout from "../components/Layout";
 import Section from "../components/Section/Section";
 import BlogList from "../components/BLogs/BlogList";
 import ScrollableTab from "../components/ScrollableTab";
-import blogImage from "../Assests/office.png";
+import blogImage from "../Assests/reading.png";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   about: {
     alignSelf: "center",
-    width: "180px",
     padding: "10px 40px",
     background: "#fafafa",
     border: "1px solid #05a0e7",
@@ -53,9 +52,9 @@ const BlogPage = ({
           }}
         >
           <div>
-            <img src={blogImage} height="100%" width="100%" alt="img" />
+            <img src={blogImage} height="85%" width="85%" alt="img" />
           </div>
-          <div style={{ paddingLeft: "90px" }}>
+          <div style={{ paddingLeft: "10px" }}>
             <h2>
               <span style={{ color: "#05a0e7" }}>Welcome to the Blogs.</span>{" "}
               Read your favorite blog.
