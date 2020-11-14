@@ -11,12 +11,12 @@ const useStyles = makeStyles({
     display: "flex",
     flexFlow: "wrap row",
     justifyContent: "center",
-    alignItems: "center",
+
     width: "100%",
   },
   userBox: {
     flexBasis: "30%",
-    margin: "6px 16px",
+    margin: "0px 16px",
   },
   userContainer: {
     display: "flex",

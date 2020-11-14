@@ -6,14 +6,7 @@ import SignupForm from "../components/SignupForm";
 import BoxContainer from "../components/BoxContainer";
 import AuthContainer from "../components/AuthContainer";
 
-const SignupPage = ({
-  user,
-  handleClickShowPassword,
-  showPassword,
-  sucessMessage,
-  errorMessage,
-  handleLogOut,
-}) => {
+const SignupPage = ({ user, sucessMessage, errorMessage, handleLogOut }) => {
   const history = useHistory();
 
   const onSubmit = (event) => {
@@ -33,10 +26,7 @@ const SignupPage = ({
             onSubmit={onSubmit}
             text="Already have an account yet?"
           >
-            <SignupForm
-              handleClickShowPassword={handleClickShowPassword}
-              showPassword={showPassword}
-            />
+            <SignupForm />
           </AuthContainer>
         </BoxContainer>
       </Section>

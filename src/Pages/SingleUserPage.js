@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../components/Layout";
 import BoxContainer from "../components/BoxContainer";
 import Blog from "../components/BLogs/Blog";
+import Section from "../components/Section";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { useParams } from "react-router-dom";
@@ -12,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "16px 32px 2px 32px",
     backgroundColor: "#05a0e7",
     color: "white",
+    marginTop: "100px",
   },
   blogContainer: {
     display: "flex",
@@ -38,7 +40,7 @@ const SingleUserPage = ({ user, handleLogOut }) => {
   return (
     <Layout user={user} handleLogOut={handleLogOut}>
       {selectedUser && (
-        <div>
+        <>
           <div className={classes.userHaeder}>
             <h2>{selectedUser.name}</h2>
           </div>
@@ -55,7 +57,7 @@ const SingleUserPage = ({ user, handleLogOut }) => {
               </div>
             </div>
           </BoxContainer>
-        </div>
+        </>
       )}
     </Layout>
   );

@@ -55,31 +55,30 @@ const BlogPage = ({
       sucessMessage={sucessMessage}
       errorMessage={errorMessage}
     >
-      <Section>
-        <div className={classes.sectionContainer}>
-          <img src={blogImage} height="70%" width="100%" alt="img" />
+      <div className={classes.sectionContainer}>
+        <img src={blogImage} height="70%" width="100%" alt="img" />
 
-          <div className={classes.textContainer}>
-            <h2>
-              <span className={classes.coloredSpan}>Welcome to the Blogs.</span>{" "}
-              Read your favorite blog.
-            </h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation{" "}
-            </p>
-            <Button
-              size="large"
-              variant="contained"
-              type="submit"
-              className={classes.aboutBotton}
-            >
-              About Us
-            </Button>
-          </div>
+        <div className={classes.textContainer}>
+          <h2>
+            <span className={classes.coloredSpan}>Welcome to the Blogs.</span>{" "}
+            Read your favorite blog.
+          </h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation{" "}
+          </p>
+          <Button
+            size="large"
+            variant="contained"
+            type="submit"
+            className={classes.aboutBotton}
+          >
+            About Us
+          </Button>
         </div>
-
+      </div>
+      <Section>
         <ScrollableTab />
         <BlogList
           handleLike={handleLike}

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useField } from "../hooks";
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
@@ -38,11 +39,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignupForm = ({ handleClickShowPassword, showPassword }) => {
+const SignupForm = () => {
   const classes = useStyles();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const fullName = useField("text");
+  const userName = useField("text");
+  const passWord = useField(showPassword ? "text" : "password");
+  const confirmPassword = useField(showConfirmPassword ? "text" : "password");
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
+  const handleClickShowPassword = (e) => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleClickShowConfirmPassword = (e) => {
+    setShowConfirmPassword(!showConfirmPassword);
   };
 
   return (
@@ -59,6 +70,7 @@ const SignupForm = ({ handleClickShowPassword, showPassword }) => {
                 <OutlinedInput
                   id="standard-adornment-password"
                   placeholder="Full Name"
+                  {...fullName}
                 />
               </FormControl>
             </div>
@@ -68,6 +80,7 @@ const SignupForm = ({ handleClickShowPassword, showPassword }) => {
                 <OutlinedInput
                   id="input-with-icon-adornment"
                   placeholder="User Name"
+                  {...userName}
                   endAdornment={
                     <InputAdornment position="start">
                       <AccountCircle />
@@ -82,12 +95,12 @@ const SignupForm = ({ handleClickShowPassword, showPassword }) => {
                 <OutlinedInput
                   id="standard-adornment-password"
                   placeholder="Password"
+                  {...passWord}
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
                         aria-label="toggle password visibility"
                         onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
                       >
                         {showPassword ? <Visibility /> : <VisibilityOff />}
                       </IconButton>
@@ -101,14 +114,18 @@ const SignupForm = ({ handleClickShowPassword, showPassword }) => {
                 <OutlinedInput
                   id="standard-adornment-password"
                   placeholder="Conform Password"
+                  {...confirmPassword}
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
                         aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
+                        onClick={handleClickShowConfirmPassword}
                       >
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                        {showConfirmPassword ? (
+                          <Visibility />
+                        ) : (
+                          <VisibilityOff />
+                        )}
                       </IconButton>
                     </InputAdornment>
                   }

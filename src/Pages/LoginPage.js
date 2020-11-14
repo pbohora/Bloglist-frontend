@@ -6,17 +6,7 @@ import LoginForm from "../components/LoginForm";
 import BoxContainer from "../components/BoxContainer";
 import AuthContainer from "../components/AuthContainer";
 
-const LoginPage = ({
-  user,
-  userName,
-  passWord,
-  handleLogin,
-  handleClickShowPassword,
-  showPassword,
-  sucessMessage,
-  errorMessage,
-  handleLogOut,
-}) => {
+const LoginPage = ({ user, sucessMessage, errorMessage, handleLogOut }) => {
   const history = useHistory();
 
   const onSubmit = (event) => {
@@ -36,13 +26,7 @@ const LoginPage = ({
             onSubmit={onSubmit}
             text="Don't have an account yet?"
           >
-            <LoginForm
-              handleLogin={handleLogin}
-              userName={userName}
-              passWord={passWord}
-              handleClickShowPassword={handleClickShowPassword}
-              showPassword={showPassword}
-            />
+            <LoginForm />
           </AuthContainer>
         </BoxContainer>
       </Section>

@@ -1,6 +1,7 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
-
+import React, { useState, useEffect } from "react";
+import { withRouter, useHistory } from "react-router-dom";
+import { useField } from "../hooks";
+import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
@@ -12,6 +13,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
+import { loginUser } from "../reducers/userReducer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,26 +38,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginForm = ({
-  handleLogin,
-  userName,
-  passWord,
-  handleClickShowPassword,
-  showPassword,
-  history,
-}) => {
+const LoginForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const userData = useSelector(({ user }) => {
+    return user;
+  });
   const classes = useStyles();
-  // console.log('history', history)
+  const userName = useField("text");
+  const passWord = useField(showPassword ? "text" : "password");
+
+  const username = userName.value;
+  const password = passWord.value;
+
+  useEffect(() => {
+    console.log(userData.sucess !== null);
+    if (userData.sucess !== null) {
+      history.push("/blogs");
+    }
+  }, [userData]);
+
   const onSubmit = (event) => {
-    // console.log(event)
     event.preventDefault();
     handleLogin(event);
-
-    history.push("/blogs");
   };
-  // console.log('history2', history)
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
+
+  const handleClickShowPassword = (e) => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    dispatch(loginUser(username, password));
   };
 
   return (
@@ -96,7 +112,6 @@ const LoginForm = ({
                       <IconButton
                         aria-label="toggle password visibility"
                         onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
                       >
                         {showPassword ? <Visibility /> : <VisibilityOff />}
                       </IconButton>
