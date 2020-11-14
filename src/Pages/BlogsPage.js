@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  about: {
+  aboutBotton: {
     alignSelf: "center",
     padding: "10px 40px",
     background: "#fafafa",
@@ -18,6 +18,17 @@ const useStyles = makeStyles((theme) => ({
       background: "#05a0e7",
       color: "white",
     },
+  },
+  sectionContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "80vh",
+  },
+
+  coloredSpan: {
+    color: "#05a0e7",
   },
 }));
 
@@ -41,22 +52,13 @@ const BlogPage = ({
       errorMessage={errorMessage}
     >
       <Section>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            // marginTop: "120px",
-            height: "80vh",
-          }}
-        >
+        <div className={classes.sectionContainer}>
           <div>
-            <img src={blogImage} height="85%" width="85%" alt="img" />
+            <img src={blogImage} height="80%" width="80%" alt="img" />
           </div>
-          <div style={{ paddingLeft: "10px" }}>
+          <div>
             <h2>
-              <span style={{ color: "#05a0e7" }}>Welcome to the Blogs.</span>{" "}
+              <span className={classes.coloredSpan}>Welcome to the Blogs.</span>{" "}
               Read your favorite blog.
             </h2>
             <p>
@@ -68,7 +70,7 @@ const BlogPage = ({
               size="large"
               variant="contained"
               type="submit"
-              className={classes.about}
+              className={classes.aboutBotton}
             >
               About Us
             </Button>

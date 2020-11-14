@@ -1,11 +1,11 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
@@ -17,10 +17,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     padding: "0px 60px",
     height: "100%",
+    width: "50%",
   },
 
   margin: {
-    margin: theme.spacing(4, 0),
+    margin: theme.spacing(2.5, 0),
   },
 
   loginButton: {
@@ -51,8 +52,12 @@ const SignupForm = ({ handleClickShowPassword, showPassword }) => {
         <form>
           <CardContent>
             <div>
-              <FormControl fullWidth className={classes.margin}>
-                <Input
+              <FormControl
+                fullWidth
+                variant="outlined"
+                className={classes.margin}
+              >
+                <OutlinedInput
                   id="standard-adornment-password"
                   placeholder="Full Name"
                 />
@@ -61,7 +66,7 @@ const SignupForm = ({ handleClickShowPassword, showPassword }) => {
 
             <div>
               <FormControl fullWidth className={classes.margin}>
-                <Input
+                <OutlinedInput
                   id="input-with-icon-adornment"
                   placeholder="User Name"
                   endAdornment={
@@ -75,7 +80,7 @@ const SignupForm = ({ handleClickShowPassword, showPassword }) => {
 
             <div>
               <FormControl fullWidth className={classes.margin}>
-                <Input
+                <OutlinedInput
                   id="standard-adornment-password"
                   placeholder="Password"
                   endAdornment={
@@ -94,7 +99,7 @@ const SignupForm = ({ handleClickShowPassword, showPassword }) => {
             </div>
             <div>
               <FormControl fullWidth className={classes.margin}>
-                <Input
+                <OutlinedInput
                   id="standard-adornment-password"
                   placeholder="Conform Password"
                   endAdornment={

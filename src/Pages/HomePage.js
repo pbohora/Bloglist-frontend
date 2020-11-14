@@ -33,6 +33,19 @@ const useStyles = makeStyles((theme) => ({
       color: "white",
     },
   },
+  buttonCollection: {
+    marginTop: "32px",
+  },
+  sectionContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+  },
+  coloredSpan: {
+    color: "#05a0e7",
+  },
 }));
 
 const HomePage = ({ user, handleLogOut, sucessMessage, errorMessage }) => {
@@ -48,68 +61,54 @@ const HomePage = ({ user, handleLogOut, sucessMessage, errorMessage }) => {
   };
 
   return (
-    <div
-      style={{
-        maxHeight: "100vh",
-      }}
+    <Layout
+      user={user}
+      handleLogOut={handleLogOut}
+      sucessMessage={sucessMessage}
+      errorMessage={errorMessage}
     >
-      <Layout
-        user={user}
-        handleLogOut={handleLogOut}
-        sucessMessage={sucessMessage}
-        errorMessage={errorMessage}
-      >
-        <Section>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "100%",
-            }}
-          >
-            <div>
-              <h2>
-                <span style={{ color: "#05a0e7" }}>Create</span> or{" "}
-                <span style={{ color: "#05a0e7" }}>Read</span> your favorite
-                blog anywhare, anytime.
-              </h2>
-              <p style={{ fontSize: "18px" }}>
-                Create a unique and beautiful blog. It’s easy and free. Save the
-                moments that matter.{" "}
-                <span style={{ color: "#05a0e7" }}>My Blogs</span> lets you
-                safely store or explore thousands of blog posts for free.
-              </p>
-              <div style={{ marginTop: "32px" }}>
-                {!user && (
-                  <Button
-                    onClick={onSubmit}
-                    size="large"
-                    variant="contained"
-                    type="submit"
-                    className={classes.signin}
-                  >
-                    Sign up
-                  </Button>
-                )}
+      <Section>
+        <div className={classes.sectionContainer}>
+          <div>
+            <h2>
+              <span className={classes.coloredSpan}>Create</span> or{" "}
+              <span className={classes.coloredSpan}>Read</span> your favorite
+              blog anywhare, anytime.
+            </h2>
+            <p>
+              Create a unique and beautiful blog. It’s easy and free. Save the
+              moments that matter.{" "}
+              <span className={classes.coloredSpan}>My Blogs</span> lets you
+              safely store or explore thousands of blog posts for free.
+            </p>
+            <div className={classes.buttonCollection}>
+              {!user && (
                 <Button
-                  onClick={handleClick}
+                  onClick={onSubmit}
                   size="large"
                   variant="contained"
                   type="submit"
-                  className={classes.blog}
+                  className={classes.signin}
                 >
-                  Blogs
+                  Sign up
                 </Button>
-              </div>
+              )}
+              <Button
+                onClick={handleClick}
+                size="large"
+                variant="contained"
+                type="submit"
+                className={classes.blog}
+              >
+                Blogs
+              </Button>
             </div>
-
-            <img src={blogImage} alt="img" height="55%" width="55%" />
           </div>
-        </Section>
-      </Layout>
-    </div>
+
+          <img src={blogImage} alt="img" height="55%" width="55%" />
+        </div>
+      </Section>
+    </Layout>
   );
 };
 

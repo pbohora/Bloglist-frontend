@@ -7,6 +7,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import IconButton from "@material-ui/core/IconButton";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Button from "@material-ui/core/Button";
@@ -17,12 +18,12 @@ import CardContent from "@material-ui/core/CardContent";
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: 60,
-
+    width: "50%",
     height: "100%",
   },
 
   margin: {
-    margin: theme.spacing(5, 0),
+    margin: theme.spacing(4, 0),
   },
 
   loginButton: {
@@ -65,8 +66,12 @@ const LoginForm = ({
         <form onSubmit={onSubmit}>
           <CardContent>
             <div>
-              <FormControl className={classes.margin} variant="outlined">
-                <Input
+              <FormControl
+                fullWidth
+                className={classes.margin}
+                variant="outlined"
+              >
+                <OutlinedInput
                   id="username"
                   placeholder="User Name"
                   {...userName}
@@ -79,8 +84,12 @@ const LoginForm = ({
               </FormControl>
             </div>
             <div>
-              <FormControl className={classes.margin}>
-                <Input
+              <FormControl
+                fullWidth
+                className={classes.margin}
+                variant="outlined"
+              >
+                <OutlinedInput
                   id="password"
                   placeholder="Password"
                   {...passWord}

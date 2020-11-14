@@ -1,5 +1,5 @@
 import React from "react";
-
+import { makeStyles } from "@material-ui/core/styles";
 import Layout from "../components/Layout";
 import Section from "../components/Section/Section";
 import BlogpostForm from "../components/BlogpostForm";
@@ -7,6 +7,14 @@ import Togglable from "../components/Togglable";
 import blogImage from "../Assests/blogging.png";
 import BoxContainer from "../components/BoxContainer";
 import Grid from "@material-ui/core/Grid";
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    position: " relative",
+    textAlign: "center",
+    paddingTop: "100px",
+  },
+}));
 
 const CreateBlogPage = ({
   user,
@@ -17,6 +25,8 @@ const CreateBlogPage = ({
   handleChange,
   newBlog,
 }) => {
+  const classes = useStyles();
+
   return (
     <Layout
       user={user}
@@ -25,30 +35,17 @@ const CreateBlogPage = ({
       errorMessage={errorMessage}
     >
       <Section>
-        <div
-          style={{
-            position: " relative",
-            textAlign: "center",
-            paddingTop: "150px",
-          }}
-        >
-          <img src={blogImage} alt="img" height="100%" width="100%" />
-          <div
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: " 100%",
-            }}
-          >
+        <div className={classes.container}>
+          <div className={classes.formContainer}>
             {/* <Togglable buttonLabel="Add Blog"> */}
-            <BlogpostForm
-              onBlogSubmit={handleBlogSubmit}
-              handleChange={handleChange}
-              newBlog={newBlog}
-            />
-            {/* </Togglable> */}
+            <BoxContainer>
+              <BlogpostForm
+                onBlogSubmit={handleBlogSubmit}
+                handleChange={handleChange}
+                newBlog={newBlog}
+              />
+              {/* </Togglable> */}
+            </BoxContainer>
           </div>
         </div>
       </Section>

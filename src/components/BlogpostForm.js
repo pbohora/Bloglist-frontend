@@ -13,10 +13,8 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: 60,
-    backgroundColor: "white",
-    opacity: "0.9",
-    color: "white",
+    padding: "40px 120px",
+    backgroundColor: "transparent",
   },
   createButton: {
     marginLeft: "auto",
@@ -57,7 +55,7 @@ const BlogpostForm = ({ history }) => {
     <form className={classes.root} onSubmit={onSubmit}>
       <label>TITLE</label>
 
-      <FormControl fullWidth className={classes.margin}>
+      <FormControl fullWidth className={classes.margin} variant="filled">
         <TextField
           type="text"
           value={newBlog.title}
@@ -70,7 +68,7 @@ const BlogpostForm = ({ history }) => {
       </FormControl>
       <label>AUTHOR</label>
 
-      <FormControl fullWidth className={classes.margin}>
+      <FormControl fullWidth className={classes.margin} variant="filled">
         <TextField
           type="text"
           value={newBlog.author}
@@ -84,7 +82,7 @@ const BlogpostForm = ({ history }) => {
       </FormControl>
       <label>URL</label>
 
-      <FormControl fullWidth className={classes.margin}>
+      <FormControl fullWidth className={classes.margin} variant="filled">
         <TextField
           type="text"
           value={newBlog.url}
