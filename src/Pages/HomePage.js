@@ -1,10 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-
 import Layout from "../components/Layout";
-import Section from "../components/Section/Section";
+import Section from "../components/Section";
 import blogImage from "../Assests/workplace.png";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 

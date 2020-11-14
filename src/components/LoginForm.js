@@ -2,7 +2,6 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
-import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import AccountCircle from "@material-ui/icons/AccountCircle";
@@ -11,7 +10,6 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 
@@ -109,16 +107,6 @@ const LoginForm = ({
             </div>
           </CardContent>
           <CardActions>
-            {/* <Button
-              id='reset-button'
-              className={classes.resetButton}
-              size='large'
-              variant='contained'
-              color='secondary'
-              onClick={() => (userName.onClick(), passWord.onClick())}
-            >
-              Reset
-            </Button> */}
             <Button
               id="login-button"
               className={classes.loginButton}

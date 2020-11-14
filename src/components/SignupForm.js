@@ -8,7 +8,6 @@ import Visibility from "@material-ui/icons/Visibility";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import { Link, Redirect, withRouter } from "react-router-dom";
@@ -119,14 +118,6 @@ const SignupForm = ({ handleClickShowPassword, showPassword }) => {
           </CardContent>
 
           <CardActions>
-            {/* <Button
-              className={classes.resetButton}
-              size="large"
-              variant="contained"
-              color="secondary"
-            >
-              Cancel
-            </Button> */}
             <Button
               className={classes.loginButton}
               size="large"

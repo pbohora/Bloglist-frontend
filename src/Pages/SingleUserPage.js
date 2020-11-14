@@ -2,8 +2,6 @@ import React from "react";
 import Layout from "../components/Layout";
 import BoxContainer from "../components/BoxContainer";
 import Blog from "../components/BLogs/Blog";
-import Section from "../components/Section/Section";
-import Users from "../components/Users";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { useParams } from "react-router-dom";

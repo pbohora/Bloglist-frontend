@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import Layout from "../components/Layout";
-import Section from "../components/Section/Section";
+import Section from "../components/Section";
 import SignupForm from "../components/SignupForm";
 import BoxContainer from "../components/BoxContainer";
 import AuthContainer from "../components/AuthContainer";
@@ -26,7 +26,7 @@ const SignupPage = ({
       sucessMessage={sucessMessage}
       errorMessage={errorMessage}
     >
-      <Section sectionTitle="Signup Form">
+      <Section>
         <BoxContainer>
           <AuthContainer
             btnText="Login"

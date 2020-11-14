@@ -9,8 +9,8 @@ import LayoutStyle from "./layout.module.css";
 const Layout = ({
   user,
   handleLogOut,
-  sucessMessage,
-  errorMessage,
+  //   sucessMessage,
+  //   errorMessage,
   children,
 }) => {
   const blogsData = useSelector(({ blogs }) => {

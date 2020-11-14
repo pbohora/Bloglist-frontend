@@ -1,9 +1,9 @@
 import React from "react";
 import Layout from "../components/Layout";
-import Section from "../components/Section/Section";
+import Section from "../components/Section";
 import BlogList from "../components/BLogs/BlogList";
 import ScrollableTab from "../components/ScrollableTab";
-import blogImage from "../Assests/reading.png";
+import blogImage from "../Assests/learn.png";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   sectionContainer: {
+    paddingTop: "32px",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
@@ -29,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
 
   coloredSpan: {
     color: "#05a0e7",
+  },
+  textContainer: {
+    paddingLeft: "100px",
   },
 }));
 
@@ -53,10 +57,9 @@ const BlogPage = ({
     >
       <Section>
         <div className={classes.sectionContainer}>
-          <div>
-            <img src={blogImage} height="80%" width="80%" alt="img" />
-          </div>
-          <div>
+          <img src={blogImage} height="70%" width="100%" alt="img" />
+
+          <div className={classes.textContainer}>
             <h2>
               <span className={classes.coloredSpan}>Welcome to the Blogs.</span>{" "}
               Read your favorite blog.

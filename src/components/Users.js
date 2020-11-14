@@ -1,12 +1,5 @@
 import React from "react";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import BoxContainer from "./BoxContainer";
 
@@ -15,6 +8,17 @@ import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
   container: {
+    display: "flex",
+    flexFlow: "wrap row",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+  },
+  userBox: {
+    flexBasis: "30%",
+    margin: "6px 16px",
+  },
+  userContainer: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -27,6 +31,13 @@ const useStyles = makeStyles({
     color: "white",
     marginBottom: "32px",
     backgroundColor: "#05a0e7",
+  },
+  content: {
+    fontSize: "32px",
+    marginBottom: "8px",
+    fontWeight: "bolder",
+    cursor: "pointer",
+    color: "#05a0e7",
   },
 });
 
@@ -46,28 +57,13 @@ const Users = () => {
   });
 
   return (
-    <div
-      style={{
-        paddingTop: "120px",
-        display: "flex",
-        flexFlow: "wrap row",
-        alignItems: "center",
-      }}
-    >
+    <div className={classes.container}>
       {users.map((user) => (
-        <div key={user.id} style={{ flexBasis: "30%", margin: "4px 24px" }}>
+        <div key={user.id} className={classes.userBox}>
           <BoxContainer>
-            <div className={classes.container}>
+            <div className={classes.userContainer}>
               <AvatarCreater username={user.name} />
-              <div
-                style={{
-                  fontSize: "32px",
-                  marginBottom: "8px",
-                  fontWeight: "bolder",
-                  cursor: "pointer",
-                  color: "#05a0e7",
-                }}
-              >
+              <div className={classes.content}>
                 <Link to={`/users/${user.id}`}>{user.name}</Link>
               </div>
               <p>Number of blogs: {user.blogs.length}</p>

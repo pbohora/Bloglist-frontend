@@ -1,12 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Layout from "../components/Layout";
-import Section from "../components/Section/Section";
+import Section from "../components/Section";
 import BlogpostForm from "../components/BlogpostForm";
-import Togglable from "../components/Togglable";
-import blogImage from "../Assests/blogging.png";
 import BoxContainer from "../components/BoxContainer";
-import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   container: {
