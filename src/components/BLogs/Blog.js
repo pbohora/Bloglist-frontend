@@ -9,7 +9,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { updateBlog, removeBlog } from "../../reducers/blogReducer";
 
-// import DialogBox from "../DialogBox";
+import DialogBox from "../DialogBox";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -81,7 +81,6 @@ const Blog = ({ blog, user, history }) => {
   const [showDetail, setShowDetail] = useState(false);
 
   const [openDialog, setOpenDialog] = useState(false);
-
   const handleClose = () => setOpenDialog(false);
 
   const handleShowDetail = () => setShowDetail(!showDetail);
@@ -99,6 +98,12 @@ const Blog = ({ blog, user, history }) => {
 
   return (
     <>
+      <DialogBox
+        openDialog={openDialog}
+        handleClick={handleClick}
+        handleClose={handleClose}
+        blog={blog}
+      />
       <BoxContainer>
         <div>
           <div className={classes.root}>
