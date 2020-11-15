@@ -40,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
   resetButton: {
     marginLeft: "auto",
   },
+  errorLabel: {
+    color: "#f74434",
+    padding: "10px",
+  },
 }));
 
 const SignupForm = () => {
@@ -48,6 +52,8 @@ const SignupForm = () => {
   const history = useHistory();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState(null);
+
   const register = useSelector(({ register }) => {
     return register;
   });
@@ -60,6 +66,7 @@ const SignupForm = () => {
   const name = fullName.value;
   const username = userName.value;
   const password = passWord.value;
+  const confirmpassword = confirmPassword.value;
 
   useEffect(() => {
     if (register.sucess !== null) {
@@ -78,7 +85,12 @@ const SignupForm = () => {
 
   const handleSignup = (e) => {
     e.preventDefault();
-    dispatch(signupUser(name, username, password));
+    if (password !== confirmpassword) {
+      setPasswordError("Password do not match.");
+    } else {
+      setPasswordError(null);
+      dispatch(signupUser(name, username, password));
+    }
   };
 
   return (
@@ -136,6 +148,9 @@ const SignupForm = () => {
             </div>
             <div>
               <FormControl fullWidth className={classes.margin}>
+                {passwordError && (
+                  <label className={classes.errorLabel}>{passwordError}</label>
+                )}
                 <OutlinedInput
                   id="standard-adornment-password"
                   placeholder="Conform Password"

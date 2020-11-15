@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     display: "flex",
     flexFlow: "wrap row",
     justifyContent: "center",
-
+    paddingTop: "100px",
     width: "100%",
   },
   userBox: {
