@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useField } from "../hooks";
+import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
@@ -11,7 +12,9 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import { Link, Redirect, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { signupUser } from "../reducers/registerReducer";
+import { allUsers } from "../reducers/usersReducer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,12 +44,29 @@ const useStyles = makeStyles((theme) => ({
 
 const SignupForm = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const register = useSelector(({ register }) => {
+    return register;
+  });
+
   const fullName = useField("text");
   const userName = useField("text");
   const passWord = useField(showPassword ? "text" : "password");
   const confirmPassword = useField(showConfirmPassword ? "text" : "password");
+
+  const name = fullName.value;
+  const username = userName.value;
+  const password = passWord.value;
+
+  useEffect(() => {
+    if (register.sucess !== null) {
+      history.push("/login");
+      dispatch(allUsers());
+    }
+  }, [register]);
 
   const handleClickShowPassword = (e) => {
     setShowPassword(!showPassword);
@@ -56,10 +76,15 @@ const SignupForm = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
+  const handleSignup = (e) => {
+    e.preventDefault();
+    dispatch(signupUser(name, username, password));
+  };
+
   return (
     <>
       <div className={classes.root}>
-        <form>
+        <form onSubmit={handleSignup}>
           <CardContent>
             <div>
               <FormControl

@@ -53,7 +53,6 @@ const LoginForm = () => {
   const password = passWord.value;
 
   useEffect(() => {
-    console.log(userData.sucess !== null);
     if (userData.sucess !== null) {
       history.push("/blogs");
     }
