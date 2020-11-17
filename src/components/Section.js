@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    minHeight: "100vh",
+    minHeight: "50vh",
   },
 }));
 

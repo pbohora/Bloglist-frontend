@@ -19,17 +19,19 @@ const SignupPage = ({ user, sucessMessage, errorMessage, handleLogOut }) => {
       sucessMessage={sucessMessage}
       errorMessage={errorMessage}
     >
-      <Section>
-        <BoxContainer>
-          <AuthContainer
-            btnText="Login"
-            onSubmit={onSubmit}
-            text="Already have an account yet?"
-          >
-            <SignupForm />
-          </AuthContainer>
-        </BoxContainer>
-      </Section>
+      <div style={{ paddingTop: "100px" }}>
+        <Section>
+          <BoxContainer>
+            <AuthContainer
+              btnText="Login"
+              onSubmit={onSubmit}
+              text="Already have an account yet?"
+            >
+              <SignupForm />
+            </AuthContainer>
+          </BoxContainer>
+        </Section>
+      </div>
     </Layout>
   );
 };

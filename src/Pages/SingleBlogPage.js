@@ -96,21 +96,7 @@ const SingleBlogPage = ({ user, handleLogOut }) => {
               </Typography>
             </div>
             <Typography variant="body3" component="p">
-              This impressive paella is a perfect party dish and a fun meal to
-              cook together with your guests. Add 1 cup of frozen peas along
-              with the mussels, if you like. This impressive paella is a perfect
-              party dish and a fun meal to cook together with your guests. Add 1
-              cup of frozen peas along with the mussels, if you like. This
-              impressive paella is a perfect party dish and a fun meal to cook
-              together with your guests. Add 1 cup of frozen peas along with the
-              mussels, if you like. This impressive paella is a perfect party
-              dish and a fun meal to cook together with your guests. Add 1 cup
-              of frozen peas along with the mussels, if you like. This
-              impressive paella is a perfect party dish and a fun meal to cook
-              together with your guests. Add 1 cup of frozen peas along with the
-              mussels, if you like. This impressive paella is a perfect party
-              dish and a fun meal to cook together with your guests. Add 1 cup
-              of frozen peas along with the mussels, if you like.
+              {selectedBlog.content}
             </Typography>
             <h4>Added by {selectedBlog.user.name}</h4>
             <div>

@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    height: "100%",
+    minHeight: "100vh",
   },
   coloredSpan: {
     color: "#05a0e7",

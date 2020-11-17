@@ -32,7 +32,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const BlogpostForm = ({ history }) => {
-  const [newBlog, setNewBlog] = useState({ title: "", author: "", url: "" });
+  const [newBlog, setNewBlog] = useState({
+    title: "",
+    author: "",
+    url: "",
+    content: "",
+  });
 
   const classes = useStyles();
 
@@ -47,14 +52,12 @@ const BlogpostForm = ({ history }) => {
     console.log("history", history);
     e.preventDefault();
     dispatch(createBlog(newBlog));
-    setNewBlog({ title: "", author: "", url: "" });
+    setNewBlog({ title: "", author: "", url: "", content: "" });
     history.push("/blogs");
   };
 
   return (
     <form className={classes.root} onSubmit={onSubmit}>
-      <label>TITLE</label>
-
       <FormControl fullWidth className={classes.margin} variant="filled">
         <TextField
           type="text"
@@ -66,7 +69,6 @@ const BlogpostForm = ({ history }) => {
           variant="outlined"
         />
       </FormControl>
-      <label>AUTHOR</label>
 
       <FormControl fullWidth className={classes.margin} variant="filled">
         <TextField
@@ -76,11 +78,9 @@ const BlogpostForm = ({ history }) => {
           onChange={handleChange}
           id="author"
           label="Author"
-          color="secondary"
           variant="outlined"
         />
       </FormControl>
-      <label>URL</label>
 
       <FormControl fullWidth className={classes.margin} variant="filled">
         <TextField
@@ -93,7 +93,18 @@ const BlogpostForm = ({ history }) => {
           variant="outlined"
         />
       </FormControl>
-
+      <FormControl fullWidth className={classes.margin} variant="filled">
+        <TextField
+          id="outlined-multiline-static"
+          label="Content"
+          multiline
+          name="content"
+          onChange={handleChange}
+          rows={10}
+          defaultValue={newBlog.content}
+          variant="outlined"
+        />
+      </FormControl>
       <CardActions>
         <Button
           id="add-blog"

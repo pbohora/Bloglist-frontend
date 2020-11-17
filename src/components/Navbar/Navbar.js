@@ -25,7 +25,7 @@ const NavBar = ({ user, handleLogOut }) => {
 
         {user && (
           <NavLink to="/addblog" exact activeClassName={NavStyle.navbarActive}>
-            Add New Blog
+            Create
           </NavLink>
         )}
 
