@@ -1,19 +1,17 @@
-import React from 'react'
-import Layout from '../components/Layout'
-import Section from '../components/Section/Section'
-import LoginForm from '../components/LoginForm'
+import React from "react";
+import { useHistory } from "react-router-dom";
+import Layout from "../components/Layout";
+import Section from "../components/Section";
+import LoginForm from "../components/LoginForm";
+import BoxContainer from "../components/BoxContainer";
+import AuthContainer from "../components/AuthContainer";
 
-const LoginPage = ({
-  user,
-  userName,
-  passWord,
-  handleLogin,
-  handleClickShowPassword,
-  showPassword,
-  sucessMessage,
-  errorMessage,
-  handleLogOut,
-}) => {
+const LoginPage = ({ user, sucessMessage, errorMessage, handleLogOut }) => {
+  const history = useHistory();
+
+  const onSubmit = (event) => {
+    history.push("/signup");
+  };
   return (
     <Layout
       user={user}
@@ -21,17 +19,21 @@ const LoginPage = ({
       sucessMessage={sucessMessage}
       errorMessage={errorMessage}
     >
-      <Section sectionTitle='Login Form'>
-        <LoginForm
-          handleLogin={handleLogin}
-          userName={userName}
-          passWord={passWord}
-          handleClickShowPassword={handleClickShowPassword}
-          showPassword={showPassword}
-        />
-      </Section>
+      <div style={{ paddingTop: "100px" }}>
+        <Section>
+          <BoxContainer>
+            <AuthContainer
+              btnText="Sign up"
+              onSubmit={onSubmit}
+              text="Don't have an account yet?"
+            >
+              <LoginForm />
+            </AuthContainer>
+          </BoxContainer>
+        </Section>
+      </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

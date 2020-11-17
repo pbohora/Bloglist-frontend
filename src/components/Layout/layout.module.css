@@ -1,5 +1,8 @@
 .layoutContainer {
   padding: 0px 140px;
+  position: relative;
+  min-height: 80vh;
+  margin-bottom: 2rem;
 }
 
 @media only screen and (max-width: 800px) {

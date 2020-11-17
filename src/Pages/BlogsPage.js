@@ -1,16 +1,15 @@
 import React from "react";
 import Layout from "../components/Layout";
-import Section from "../components/Section/Section";
+import Section from "../components/Section";
 import BlogList from "../components/BLogs/BlogList";
 import ScrollableTab from "../components/ScrollableTab";
-import blogImage from "../Assests/office.png";
+import blogImage from "../Assests/learn.png";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  about: {
+  aboutBotton: {
     alignSelf: "center",
-    width: "180px",
     padding: "10px 40px",
     background: "#fafafa",
     border: "1px solid #05a0e7",
@@ -19,6 +18,21 @@ const useStyles = makeStyles((theme) => ({
       background: "#05a0e7",
       color: "white",
     },
+  },
+  sectionContainer: {
+    paddingTop: "32px",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "80vh",
+  },
+
+  coloredSpan: {
+    color: "#05a0e7",
+  },
+  textContainer: {
+    paddingLeft: "100px",
   },
 }));
 
@@ -41,41 +55,30 @@ const BlogPage = ({
       sucessMessage={sucessMessage}
       errorMessage={errorMessage}
     >
-      <Section>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            // marginTop: "120px",
-            height: "80vh",
-          }}
-        >
-          <div>
-            <img src={blogImage} height="100%" width="100%" alt="img" />
-          </div>
-          <div style={{ paddingLeft: "90px" }}>
-            <h2>
-              <span style={{ color: "#05a0e7" }}>Welcome to the Blogs.</span>{" "}
-              Read your favorite blog.
-            </h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation{" "}
-            </p>
-            <Button
-              size="large"
-              variant="contained"
-              type="submit"
-              className={classes.about}
-            >
-              About Us
-            </Button>
-          </div>
-        </div>
+      <div className={classes.sectionContainer}>
+        <img src={blogImage} height="70%" width="100%" alt="img" />
 
+        <div className={classes.textContainer}>
+          <h2>
+            <span className={classes.coloredSpan}>Welcome to the Blogs.</span>{" "}
+            Read your favorite blog.
+          </h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation{" "}
+          </p>
+          <Button
+            size="large"
+            variant="contained"
+            type="submit"
+            className={classes.aboutBotton}
+          >
+            About Us
+          </Button>
+        </div>
+      </div>
+      <Section>
         <ScrollableTab />
         <BlogList
           handleLike={handleLike}

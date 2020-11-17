@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
 import { initializeBlogs } from "./reducers/blogReducer";
 import { useDispatch, useSelector } from "react-redux";
+import { setToken } from "./services/blog";
 import { removeUser, setUser, loginUser } from "./reducers/userReducer";
 import { allUsers } from "./reducers/usersReducer";
-
-import { login } from "./services/login";
-import { setToken } from "./services/blog";
-import { useField } from "./hooks";
 
 import HomePage from "./Pages/HomePage";
 import LoginPage from "./Pages/LoginPage";
@@ -20,24 +16,16 @@ import SingleUserPage from "./Pages/SingleUserPage";
 import SingleBlogPage from "./Pages/SingleBlogPage";
 
 const App = () => {
-  //   const [user, setUser] = useState(null)
-  // const [newBlog, setNewBlog] = useState({ title: '', author: '', url: '' })
   const [sucessMessage, setSucessMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [showPassword, setShowPassword] = useState(false);
 
-  const userName = useField("text");
-  const passWord = useField(showPassword ? "text" : "password");
   const userData = useSelector(({ user }) => {
     return user;
   });
 
-  const user = userData.user;
+  console.log(userData);
 
-  console.log("userrsd", user);
-  const username = userName.value;
-  const password = passWord.value;
-  console.log(userName, passWord);
+  const user = userData.user;
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(initializeBlogs());
@@ -52,23 +40,13 @@ const App = () => {
     if (loggedUser) {
       const user = JSON.parse(loggedUser);
       dispatch(setUser(user));
-      console.log(user.token);
+      setToken(user.token);
     }
   }, []);
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-
-    dispatch(loginUser(username, password));
-  };
 
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(removeUser());
-  };
-
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
   };
 
   return (
@@ -121,11 +99,6 @@ const App = () => {
             <LoginPage
               user={user}
               handleLogOut={handleLogout}
-              handleLogin={handleLogin}
-              userName={userName}
-              passWord={passWord}
-              handleClickShowPassword={handleClickShowPassword}
-              showPassword={showPassword}
               sucessMessage={sucessMessage}
               errorMessage={errorMessage}
             />
@@ -137,8 +110,6 @@ const App = () => {
             <SignupPage
               user={user}
               handleLogOut={handleLogout}
-              handleClickShowPassword={handleClickShowPassword}
-              showPassword={showPassword}
               sucessMessage={sucessMessage}
               errorMessage={errorMessage}
             />

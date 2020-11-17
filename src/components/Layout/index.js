@@ -3,18 +3,27 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer";
 import Notification from "../Notification";
 import LayoutStyle from "./layout.module.css";
 
 const Layout = ({
   user,
   handleLogOut,
-  sucessMessage,
-  errorMessage,
+  //   sucessMessage,
+  //   errorMessage,
   children,
 }) => {
   const blogsData = useSelector(({ blogs }) => {
     return blogs;
+  });
+
+  const userData = useSelector(({ user }) => {
+    return user;
+  });
+
+  const register = useSelector(({ register }) => {
+    return register;
   });
 
   return (
@@ -28,7 +37,12 @@ const Layout = ({
 
       <Notification message={blogsData.sucess} severity="success" />
       <Notification message={blogsData.error} severity="error" />
+      <Notification message={userData.sucess} severity="success" />
+      <Notification message={userData.error} severity="error" />
+      <Notification message={register.sucess} severity="success" />
+      <Notification message={register.error} severity="error" />
       <div className={LayoutStyle.layoutContainer}>{children}</div>
+      <Footer />
     </div>
   );
 };

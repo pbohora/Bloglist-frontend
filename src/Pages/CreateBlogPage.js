@@ -1,12 +1,17 @@
 import React from "react";
-
+import { makeStyles } from "@material-ui/core/styles";
 import Layout from "../components/Layout";
-import Section from "../components/Section/Section";
+import Section from "../components/Section";
 import BlogpostForm from "../components/BlogpostForm";
-import Togglable from "../components/Togglable";
-import Subsection from "../components/Subsection/Subsection";
+import BoxContainer from "../components/BoxContainer";
 
-import Grid from "@material-ui/core/Grid";
+const useStyles = makeStyles((theme) => ({
+  container: {
+    position: " relative",
+    textAlign: "center",
+    paddingTop: "100px",
+  },
+}));
 
 const CreateBlogPage = ({
   user,
@@ -17,6 +22,8 @@ const CreateBlogPage = ({
   handleChange,
   newBlog,
 }) => {
+  const classes = useStyles();
+
   return (
     <Layout
       user={user}
@@ -25,16 +32,19 @@ const CreateBlogPage = ({
       errorMessage={errorMessage}
     >
       <Section>
-        <Togglable buttonLabel="Add Blog">
-          <BlogpostForm
-            onBlogSubmit={handleBlogSubmit}
-            handleChange={handleChange}
-            newBlog={newBlog}
-          />
-        </Togglable>
-      </Section>
-      <Section>
-        <Subsection />
+        <div className={classes.container}>
+          <div className={classes.formContainer}>
+            {/* <Togglable buttonLabel="Add Blog"> */}
+            <BoxContainer>
+              <BlogpostForm
+                onBlogSubmit={handleBlogSubmit}
+                handleChange={handleChange}
+                newBlog={newBlog}
+              />
+              {/* </Togglable> */}
+            </BoxContainer>
+          </div>
+        </div>
       </Section>
     </Layout>
   );

@@ -1,11 +1,27 @@
 import React from "react";
 import Blog from "./Blog";
-
-import { useDispatch, useSelector } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
+import { useSelector } from "react-redux";
 //  import { updateBlog, removeBlog } from "../../reducers/blogReducer";
-import { setSucess, setError } from "../../reducers/notificationReducer";
+// import { setSucess, setError } from "../../reducers/notificationReducer";
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: "flex",
+    flexFlow: "wrap row",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+  },
+  blogWrapper: {
+    flexBasis: "45%",
+    margin: "4px 24px",
+  },
+}));
 
 const BlogList = ({ user, openDialog, handleClose }) => {
+  const classes = useStyles();
+
   const blogsData = useSelector(({ blogs }) => {
     return blogs;
   });
@@ -26,17 +42,9 @@ const BlogList = ({ user, openDialog, handleClose }) => {
 
   blogs.sort((a, b) => b.likes - a.likes);
   return (
-    <div
-      style={{
-        display: "flex",
-        flexFlow: "wrap row",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-      }}
-    >
+    <div className={classes.container}>
       {blogs.map((blog) => (
-        <div key={blog.id} style={{ flexBasis: "45%", margin: "4px 24px" }}>
+        <div key={blog.id} className={classes.blogWrapper}>
           <Blog
             blog={blog}
             user={user}
