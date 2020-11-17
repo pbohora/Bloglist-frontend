@@ -1,11 +1,37 @@
 import React from "react";
-
 import { useSelector } from "react-redux";
-
+import { makeStyles } from "@material-ui/core/styles";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer";
 import Notification from "../Notification";
-import LayoutStyle from "./layout.module.css";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: "#fafafa",
+  },
+  layoutContainer: {
+    [theme.breakpoints.down("xs")]: {
+      padding: " 50px 16px",
+      position: "relative",
+      marginBottom: "2rem",
+    },
+    [theme.breakpoints.up("sm")]: {
+      padding: " 0px 60px",
+      position: "relative",
+      marginBottom: "2rem",
+    },
+    [theme.breakpoints.up("md")]: {
+      padding: " 0px 60px",
+      position: "relative",
+      marginBottom: "2rem",
+    },
+    [theme.breakpoints.up("lg")]: {
+      padding: " 0px 140px",
+      position: "relative",
+      marginBottom: "2rem",
+    },
+  },
+}));
 
 const Layout = ({
   user,
@@ -14,6 +40,7 @@ const Layout = ({
   //   errorMessage,
   children,
 }) => {
+  const classes = useStyles();
   const blogsData = useSelector(({ blogs }) => {
     return blogs;
   });
@@ -27,12 +54,7 @@ const Layout = ({
   });
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        backgroundColor: "#fafafa",
-      }}
-    >
+    <div className={classes.root}>
       <Navbar user={user} handleLogOut={handleLogOut} />
 
       <Notification message={blogsData.sucess} severity="success" />
@@ -41,7 +63,7 @@ const Layout = ({
       <Notification message={userData.error} severity="error" />
       <Notification message={register.sucess} severity="success" />
       <Notification message={register.error} severity="error" />
-      <div className={LayoutStyle.layoutContainer}>{children}</div>
+      <div className={classes.layoutContainer}>{children}</div>
       <Footer />
     </div>
   );
