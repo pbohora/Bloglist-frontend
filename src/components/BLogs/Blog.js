@@ -16,13 +16,30 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+    width: "100%",
   },
   header: {
-    fontSize: "32px",
-    marginBottom: "8px",
-    fontWeight: "bolder",
-    cursor: "pointer",
-    color: "#05a0e7",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "24px",
+      marginBottom: "8px",
+      fontWeight: "bolder",
+      cursor: "pointer",
+      color: "#05a0e7",
+    },
+    [theme.breakpoints.up("md")]: {
+      fontSize: "24px",
+      marginBottom: "8px",
+      fontWeight: "bolder",
+      cursor: "pointer",
+      color: "#05a0e7",
+    },
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "32px",
+      marginBottom: "8px",
+      fontWeight: "bolder",
+      cursor: "pointer",
+      color: "#05a0e7",
+    },
   },
   likeIcon: {
     padding: 0,
@@ -47,7 +64,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
   },
   textContent: {
-    height: "140px",
+    height: "150px",
+    padding: "16px 0px",
   },
   blogLink: {
     fontWeight: "bold",
@@ -123,7 +141,7 @@ const Blog = ({ blog, user, history }) => {
           </div>
           <span className={classes.subContent}>Creater: {blog.author}</span>
           <p className={classes.textContent}>
-            {blog.content.substring(0, 200)}...
+            {blog.content.substring(0, 180)}...
           </p>
 
           <a className={classes.blogLink} href={blog.url}>

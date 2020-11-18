@@ -6,6 +6,7 @@ import ScrollableTab from "../components/ScrollableTab";
 import blogImage from "../Assests/learn.png";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import { Hidden } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   aboutBotton: {
@@ -20,18 +21,48 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   sectionContainer: {
-    paddingTop: "32px",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "80vh",
+    [theme.breakpoints.down("sm")]: {
+      padding: "60px 10px",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    [theme.breakpoints.up("md")]: {
+      padding: "60px 0px",
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    [theme.breakpoints.up("lg")]: {
+      paddingTop: "32px",
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "80vh",
+    },
+  },
+
+  img: {
+    [theme.breakpoints.up("md")]: {
+      height: "40%",
+      width: "50%",
+    },
+    [theme.breakpoints.up("lg")]: {
+      height: "70%",
+      width: "80%",
+    },
   },
 
   coloredSpan: {
     color: "#05a0e7",
   },
   textContainer: {
+    [theme.breakpoints.down("sm")]: {
+      paddingLeft: "0px",
+    },
     paddingLeft: "100px",
   },
 }));
@@ -43,7 +74,7 @@ const BlogPage = ({
   sucessMessage,
   errorMessage,
   handleLogOut,
-  openDialog,
+
   handleClose,
 }) => {
   const classes = useStyles();
@@ -56,8 +87,9 @@ const BlogPage = ({
       errorMessage={errorMessage}
     >
       <div className={classes.sectionContainer}>
-        <img src={blogImage} height="70%" width="100%" alt="img" />
-
+        <Hidden smDown>
+          <img src={blogImage} className={classes.img} alt="img" />
+        </Hidden>
         <div className={classes.textContainer}>
           <h2>
             <span className={classes.coloredSpan}>Welcome to the Blogs.</span>{" "}
@@ -78,8 +110,8 @@ const BlogPage = ({
           </Button>
         </div>
       </div>
+      <ScrollableTab />
       <Section>
-        <ScrollableTab />
         <BlogList
           handleLike={handleLike}
           handleRemove={handleRemove}

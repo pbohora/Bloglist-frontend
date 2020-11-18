@@ -62,7 +62,6 @@ const ScrollableTab = () => {
     <div className={classes.root}>
       <div>
         <StyledTabs
-          centered
           value={value}
           onChange={handleChange}
           aria-label="styled tabs example"

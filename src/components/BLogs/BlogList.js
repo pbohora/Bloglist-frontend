@@ -14,8 +14,18 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   blogWrapper: {
-    flexBasis: "45%",
-    margin: "4px 24px",
+    [theme.breakpoints.down("sm")]: {
+      margin: "4px 10px",
+    },
+
+    [theme.breakpoints.up("md")]: {
+      flexBasis: "45%",
+      margin: "4px 16px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      flexBasis: "45%",
+      margin: "4px 24px",
+    },
   },
 }));
 
