@@ -21,10 +21,21 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
+    minHeight: "60vh",
   },
   singleBlog: {
-    flexBasis: "45%",
-    margin: "4px 24px",
+    [theme.breakpoints.down("sm")]: {
+      margin: "4px 10px",
+    },
+
+    [theme.breakpoints.up("md")]: {
+      flexBasis: "45%",
+      margin: "4px 16px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      flexBasis: "45%",
+      margin: "4px 24px",
+    },
   },
 }));
 
@@ -48,12 +59,16 @@ const SingleUserPage = ({ user, handleLogOut }) => {
             <div>
               <h2>Blogs</h2>
               <div className={classes.blogContainer}>
-                {selectedUser.blogs.map((blog) => (
-                  // <li key={blog.id}>{blog.title}</li>
-                  <div key={blog.id} className={classes.singleBlog}>
-                    <Blog blog={blog} user={user} />
-                  </div>
-                ))}
+                {selectedUser.blogs.length > 1 ? (
+                  selectedUser.blogs.map((blog) => (
+                    // <li key={blog.id}>{blog.title}</li>
+                    <div key={blog.id} className={classes.singleBlog}>
+                      <Blog blog={blog} user={user} />
+                    </div>
+                  ))
+                ) : (
+                  <p>No blogs from {selectedUser.name}</p>
+                )}
               </div>
             </div>
           </BoxContainer>

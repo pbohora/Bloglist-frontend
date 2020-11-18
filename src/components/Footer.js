@@ -3,10 +3,14 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   footerContainer: {
+    [theme.breakpoints.down("xs")]: {
+      padding: "12px 40px",
+    },
+
     backgroundColor: "rgb(65, 63, 63)",
     color: "white",
     marginTop: "auto",
-    padding: "16px 120px",
+    padding: "20px 100px",
     height: "8rem",
     display: "flex",
     flexDirection: "column",

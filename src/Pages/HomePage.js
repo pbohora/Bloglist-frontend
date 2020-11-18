@@ -5,9 +5,14 @@ import Section from "../components/Section";
 import blogImage from "../Assests/workplace.png";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import { Hidden } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   signin: {
+    [theme.breakpoints.down("xs")]: {
+      marginRight: "0px",
+      marginBottom: "16px",
+    },
     alignSelf: "center",
     width: "180px",
     padding: "10px 40px",
@@ -19,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   blog: {
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: "0px",
+      marginTop: "16px",
+    },
     alignSelf: "center",
     width: "180px",
     padding: "10px 40px",
@@ -32,14 +41,37 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   buttonCollection: {
+    [theme.breakpoints.down("xs")]: {
+      justifyContent: "center",
+      flexDirection: "column",
+    },
     marginTop: "32px",
-  },
-  sectionContainer: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    minHeight: "100vh",
+    flexWrap: "wrap",
+  },
+  sectionContainer: {
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      flexDirection: "column-reverse",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "90vh",
+    },
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "85vh",
+    },
+    [theme.breakpoints.up("lg")]: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "100vh",
+    },
   },
   coloredSpan: {
     color: "#05a0e7",
@@ -102,8 +134,9 @@ const HomePage = ({ user, handleLogOut, sucessMessage, errorMessage }) => {
               </Button>
             </div>
           </div>
-
-          <img src={blogImage} alt="img" height="55%" width="55%" />
+          <Hidden smDown>
+            <img src={blogImage} alt="img" height="55%" width="55%" />
+          </Hidden>
         </div>
       </Section>
     </Layout>

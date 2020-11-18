@@ -95,7 +95,7 @@ const SingleBlogPage = ({ user, handleLogOut }) => {
                 <a href="">{selectedBlog.url}</a>
               </Typography>
             </div>
-            <Typography variant="body3" component="p">
+            <Typography variant="subtitle1" component="p">
               {selectedBlog.content}
             </Typography>
             <h4>Added by {selectedBlog.user.name}</h4>
