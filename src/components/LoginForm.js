@@ -17,7 +17,11 @@ import { loginUser } from "../reducers/userReducer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: 60,
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      padding: "60px 0px",
+    },
+    padding: "60px 20px",
     width: "50%",
     height: "100%",
   },

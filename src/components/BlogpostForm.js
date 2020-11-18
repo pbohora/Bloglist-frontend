@@ -13,7 +13,10 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: "40px 120px",
+    [theme.breakpoints.down("sm")]: {
+      padding: "32px 24px",
+    },
+    padding: "32px 80px",
     backgroundColor: "transparent",
   },
   createButton: {
@@ -27,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   margin: {
-    margin: theme.spacing(4, 0),
+    margin: theme.spacing(3, 0),
     color: "white",
   },
 }));

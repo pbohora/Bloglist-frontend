@@ -19,7 +19,7 @@ const LoginPage = ({ user, sucessMessage, errorMessage, handleLogOut }) => {
       sucessMessage={sucessMessage}
       errorMessage={errorMessage}
     >
-      <div style={{ paddingTop: "100px" }}>
+      <div style={{ paddingTop: "110px", minHeight: "73vh" }}>
         <Section>
           <BoxContainer>
             <AuthContainer

@@ -6,7 +6,7 @@ import BoxContainer from "./BoxContainer";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
     flexFlow: "wrap row",
@@ -15,8 +15,21 @@ const useStyles = makeStyles({
     width: "100%",
   },
   userBox: {
-    flexBasis: "30%",
-    margin: "0px 16px",
+    [theme.breakpoints.down("sm")]: {
+      margin: "0px 16px",
+      width: "100%",
+    },
+    [theme.breakpoints.up("md")]: {
+      flexBasis: "45%",
+      margin: "0px 16px",
+      width: "100%",
+    },
+
+    [theme.breakpoints.up("lg")]: {
+      flexBasis: "30%",
+      margin: "0px 16px",
+      width: "100%",
+    },
   },
   userContainer: {
     display: "flex",
@@ -39,7 +52,7 @@ const useStyles = makeStyles({
     cursor: "pointer",
     color: "#05a0e7",
   },
-});
+}));
 
 const AvatarCreater = ({ username }) => {
   const classes = useStyles();

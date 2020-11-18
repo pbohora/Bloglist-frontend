@@ -5,13 +5,16 @@ import authImage from "../Assests/network.png";
 
 const useStyles = makeStyles((theme) => ({
   container: {
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
     display: "flex",
     flexDirection: "row",
+    width: "100%",
     justifyContent: "center",
     textAlign: " center",
   },
   imgContainer: {
-    width: "450px",
     height: "420px",
     padding: "32px 44px",
     backgroundPosition: " center",

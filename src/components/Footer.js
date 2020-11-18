@@ -6,10 +6,11 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       padding: "12px 40px",
     },
+
     backgroundColor: "rgb(65, 63, 63)",
     color: "white",
     marginTop: "auto",
-
+    padding: "20px 100px",
     height: "8rem",
     display: "flex",
     flexDirection: "column",
