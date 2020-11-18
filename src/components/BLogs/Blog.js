@@ -173,7 +173,7 @@ Blog.propTypes = {
   blog: PropTypes.objectOf(PropTypes.any).isRequired,
   user: PropTypes.objectOf(PropTypes.any),
   handleLike: PropTypes.func.isRequired,
-  handleRemove: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func,
 };
 
 export default withRouter(Blog);

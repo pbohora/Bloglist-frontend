@@ -62,6 +62,7 @@ const SideDrawer = ({ user, handleLogOut }) => {
     >
       <List component="nav">
         <div className={classes.navLinks}>
+          {user && <h3>Welcome! {user.name}</h3>}
           <NavLink
             className={classes.navItem}
             as={Link}
@@ -108,7 +109,7 @@ const SideDrawer = ({ user, handleLogOut }) => {
               activeClassName={classes.navbarActive}
               onClick={handleLogOut}
             >
-              {user.name}
+              Log out
             </a>
           ) : (
             <NavLink

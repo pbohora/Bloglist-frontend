@@ -44,8 +44,7 @@ const App = () => {
     }
   }, []);
 
-  const handleLogout = (e) => {
-    e.preventDefault();
+  const handleLogout = () => {
     dispatch(removeUser());
   };
 

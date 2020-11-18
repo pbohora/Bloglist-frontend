@@ -86,6 +86,8 @@
 }
 .loginButton {
   cursor: pointer;
+  display: inline-flex;
+  vertical-align: middle;
 }
 .loginButton:hover {
   color: #05a0e7;
