@@ -6,6 +6,9 @@ Front-end for the Blog post application. The UI contains the features like
 - clicking each blog item shows the details of the blogs,
 - a option to delate the blog (if the blog is created by the logged in user) and like the blog.
   The repository for the backend is available in https://github.com/pbohora/bloglist-backend.
+  
+## Demo
+https://desolate-springs-19248.herokuapp.com
 
 ## Motivation
 
@@ -69,3 +72,5 @@ yarn lint-fix
 ### Test
 
 UI test is done using React testing library and for the E2E testing it uses Cypress.
+
+
