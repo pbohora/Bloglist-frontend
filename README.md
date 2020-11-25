@@ -23,6 +23,7 @@ The project is the part of full-stack course from University of Helsinki. The im
 - React testing library
 - Cypress
 - CSS
+- Material UI
 
 ## Code Examples
 
@@ -72,5 +73,14 @@ yarn lint-fix
 ### Test
 
 UI test is done using React testing library and for the E2E testing it uses Cypress.
+UI test:
+```
+yarn test
+```
+E2E test:
 
+```
+yarn cypress:open
+```
+Note: backend must be running
 
